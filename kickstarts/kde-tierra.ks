@@ -25,9 +25,6 @@ gitflow
 # Networking
 plasma-nm-openconnect
 
-# Printing
-samba-krb5-printing
-
 %end
 
 
@@ -70,6 +67,7 @@ cat > /etc/samba/smb.toptierra << SAMBA_CONF_EOF
     encrypt passwords = yes
     kerberos method = secrets and keytab
     dedicated keytab file = /etc/krb5.keytab
+    lock directory = /tmp
     printing = cups
     printcap name = cups
 SAMBA_CONF_EOF
@@ -149,8 +147,8 @@ case \$INPUT_CMD in
         echo 'Configuring Samba service...'
         mv /etc/samba/smb.conf /etc/samba/smb.conf."\$(date +"%Y%m%d-%H%M%S")"
         cp --force /etc/samba/smb.toptierra /etc/samba/smb.conf
-        # echo 'Configuring CUPS service...'
-        # cupsctl DefaultAuthType=Negotiate
+        echo 'Configuring CUPS service...'
+        cupsctl DefaultAuthType=Negotiate
         echo 'Done.'
         ;;
     assign)
