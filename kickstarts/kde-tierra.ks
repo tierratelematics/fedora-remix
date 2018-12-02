@@ -55,6 +55,17 @@ includedir /etc/krb5.conf.d/
  .toptierra.it = TOPTIERRA.IT
 KRB5_CONF_EOF
 
+# Configure Polkit
+cat > /etc/polkit-1/rules.d/40-toptierra.rules << POLKIT_RULES_EOF
+/* -*- mode: js; js-indent-level: 4; indent-tabs-mode: nil -*- */
+
+// Default rules for TOPTIERRA domain.
+//
+polkit.addAdminRule(function(action, subject) {
+    return ["unix-user:tierra.user"];
+});
+POLKIT_RULES_EOF
+
 # Configure Samba
 cat > /etc/samba/smb.toptierra << SAMBA_CONF_EOF
 [global]
@@ -156,6 +167,8 @@ case \$INPUT_CMD in
         echo 'Assigning user...'
         sed -i 's/^simple_allow_users.*toptierra.it$/simple_allow_users = '\$assignee_user'@toptierra.it/' \\
             /etc/sssd/sssd.conf
+        sed -i 's/"unix-user:.*"/"unix-user:'\$assignee_user'"/' \\
+            /etc/polkit-1/rules.d/40-toptierra.rules
         systemctl restart sssd
         echo 'Assignee '\$assignee_user' ids:'
         id \$assignee_user
