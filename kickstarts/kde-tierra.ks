@@ -34,8 +34,54 @@ echo ""
 echo "POST TIERRA ******************************************"
 echo ""
 
-# Enable "domain users" group as administrators for print server
-sed -i 's/^[[:blank:]]*SystemGroup /SystemGroup "domain users" /g' /etc/cups/cups-files.conf
+# Configure Kerberos
+cat > /etc/krb5.toptierra << KRB5_CONF_EOF
+includedir /etc/krb5.conf.d/
+
+[libdefaults]
+ forwardable = true
+ proxiable = true
+ dns_lookup_realm = true
+ dns_lookup_kdc = true
+ default_realm = TOPTIERRA.IT
+
+[realms]
+ TOPTIERRA.IT = {
+    default_domain = toptierra.it
+ }
+
+[domain_realm]
+ toptierra.it = TOPTIERRA.IT
+ .toptierra.it = TOPTIERRA.IT
+KRB5_CONF_EOF
+
+# Configure Polkit
+cat > /etc/polkit-1/rules.d/40-toptierra.rules << POLKIT_RULES_EOF
+/* -*- mode: js; js-indent-level: 4; indent-tabs-mode: nil -*- */
+
+// Default rules for TOPTIERRA domain.
+//
+polkit.addAdminRule(function(action, subject) {
+    return ["unix-user:tierra.user"];
+});
+POLKIT_RULES_EOF
+
+# Configure Samba
+cat > /etc/samba/smb.toptierra << SAMBA_CONF_EOF
+[global]
+    workgroup = TOPTIERRA
+    realm = TOPTIERRA.IT
+    server string = %h Linux Host
+    client signing = auto
+    server signing = auto
+    security = ads
+    encrypt passwords = yes
+    kerberos method = secrets and keytab
+    dedicated keytab file = /etc/krb5.keytab
+    lock directory = /tmp
+    printing = cups
+    printcap name = cups
+SAMBA_CONF_EOF
 
 # SSSD configuration file for Tierra domain
 cat > /etc/sssd/sssd.toptierra << SSSD_CONF_EOF
@@ -53,7 +99,6 @@ krb5_realm = TOPTIERRA.IT
 krb5_store_password_if_offline = True
 cache_credentials = True
 account_cache_expiration = 30
-realmd_tags = manages-system joined-with-adcli
 id_provider = ad
 chpass_provider = ad
 default_shell = /bin/bash
@@ -85,7 +130,7 @@ set -e
 shortusage() {
     echo -e '\nSYNTAX
 
-    tierractl [join|assign]
+    tierractl [join | assign]
     
     Manipulates the host configuration: joins the Tierra domain or assigns an user to it.'
 }
@@ -101,12 +146,20 @@ case \$INPUT_CMD in
     join)
         read -p 'Domain username: ' domain_user
         realm join --user=\$domain_user toptierra.it
-        echo 'Cleaning cache...'
+        echo 'Configuring SSSD service...'
         systemctl stop sssd
-        rm /var/lib/sss/db/* -rf
-        mv /etc/sssd/sssd.conf /etc/sssd/sssd.bak
-        cp /etc/sssd/sssd.toptierra /etc/sssd/sssd.conf
+        rm --force --recursive /var/lib/sss/db/*
+        mv /etc/sssd/sssd.conf /etc/sssd/sssd.conf."\$(date +"%Y%m%d-%H%M%S")"
+        cp --force /etc/sssd/sssd.toptierra /etc/sssd/sssd.conf
         systemctl start sssd
+        echo 'Configuring Kerberos service...'
+        mv /etc/krb5.conf /etc/krb5.conf."\$(date +"%Y%m%d-%H%M%S")"
+        cp --force /etc/krb5.toptierra /etc/krb5.conf
+        echo 'Configuring Samba service...'
+        mv /etc/samba/smb.conf /etc/samba/smb.conf."\$(date +"%Y%m%d-%H%M%S")"
+        cp --force /etc/samba/smb.toptierra /etc/samba/smb.conf
+        echo 'Configuring CUPS service...'
+        cupsctl DefaultAuthType=Negotiate
         echo 'Done.'
         ;;
     assign)
@@ -114,9 +167,13 @@ case \$INPUT_CMD in
         echo 'Assigning user...'
         sed -i 's/^simple_allow_users.*toptierra.it$/simple_allow_users = '\$assignee_user'@toptierra.it/' \\
             /etc/sssd/sssd.conf
+        sed -i 's/"unix-user:.*"/"unix-user:'\$assignee_user'"/' \\
+            /etc/polkit-1/rules.d/40-toptierra.rules
         systemctl restart sssd
         echo 'Assignee '\$assignee_user' ids:'
         id \$assignee_user
+        echo 'Adding '\$assignee_user' to wheel group...'
+        usermod --append --groups wheel \$assignee_user
         echo 'Done.'
         ;;
     *)
