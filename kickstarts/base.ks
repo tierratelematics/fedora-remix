@@ -48,6 +48,7 @@ memtest86+
 
 # The point of a live image is to install
 anaconda
+anaconda-install-env-deps
 @anaconda-tools
 
 # Without this, initramfs generation during live image creation fails: #1242586
@@ -90,11 +91,10 @@ livedir="LiveOS"
 for arg in \`cat /proc/cmdline\` ; do
   if [ "\${arg##rd.live.dir=}" != "\${arg}" ]; then
     livedir=\${arg##rd.live.dir=}
-    return
+    continue
   fi
   if [ "\${arg##live_dir=}" != "\${arg}" ]; then
     livedir=\${arg##live_dir=}
-    return
   fi
 done
 
@@ -149,7 +149,6 @@ findPersistentHome() {
   for arg in \`cat /proc/cmdline\` ; do
     if [ "\${arg##persistenthome=}" != "\${arg}" ]; then
       homedev=\${arg##persistenthome=}
-      return
     fi
   done
 }
@@ -201,6 +200,10 @@ systemctl --no-reload disable crond.service 2> /dev/null || :
 systemctl --no-reload disable atd.service 2> /dev/null || :
 systemctl stop crond.service 2> /dev/null || :
 systemctl stop atd.service 2> /dev/null || :
+
+# turn off abrtd on a live image
+systemctl --no-reload disable abrtd.service 2> /dev/null || :
+systemctl stop abrtd.service 2> /dev/null || :
 
 # Don't sync the system clock when running live (RHBZ #1018162)
 sed -i 's/rtcsync//' /etc/chrony.conf
@@ -336,8 +339,19 @@ cp $INSTALL_ROOT/usr/share/licenses/*-release/* $LIVE_ROOT/
 
 # only works on x86, x86_64
 if [ "$(uname -i)" = "i386" -o "$(uname -i)" = "x86_64" ]; then
-  if [ ! -d $LIVE_ROOT/LiveOS ]; then mkdir -p $LIVE_ROOT/LiveOS ; fi
-  cp /usr/bin/livecd-iso-to-disk $LIVE_ROOT/LiveOS
+    # For livecd-creator builds
+    if [ ! -d $LIVE_ROOT/LiveOS ]; then mkdir -p $LIVE_ROOT/LiveOS ; fi
+    cp /usr/bin/livecd-iso-to-disk $LIVE_ROOT/LiveOS
+
+    # For lorax/livemedia-creator builds
+    sed -i '
+    /## make boot.iso/ i\
+    # Add livecd-iso-to-disk script to .iso filesystem at /LiveOS/\
+    <% f = "usr/bin/livecd-iso-to-disk" %>\
+    %if exists(f):\
+        install ${f} ${LIVEDIR}/${f|basename}\
+    %endif\
+    ' /usr/share/lorax/templates.d/99-generic/live/x86.tmpl
 fi
 
 %end

@@ -25,6 +25,9 @@ gitflow
 # Networking
 plasma-nm-openconnect
 
+# Security
+keepassxc
+
 %end
 
 
@@ -47,6 +50,7 @@ includedir /etc/krb5.conf.d/
 
 [realms]
  TOPTIERRA.IT = {
+    kdc = toptierra.it
     default_domain = toptierra.it
  }
 

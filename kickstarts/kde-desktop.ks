@@ -23,6 +23,7 @@ k3b-extras-freeworld
 # Office
 @libreoffice
 libreoffice-gtk3
+java-1.8.0-openjdk-headless     # Force Java 1.8 dependency for L.Office
 
 # Printers and scanners
 kde-print-manager
