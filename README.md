@@ -20,6 +20,22 @@ Then you can build the ISO image using the kickstart just obtained:
  # livemedia-creator --resultdir=result-kde --make-iso --no-virt --project=Fedora --releasever=28 --ks=fedora-tierra.ks
 ```
 
+### Official kickstarts
+You can get the official Fedora kickstarts from: [https://pagure.io/fedora-kickstarts](https://pagure.io/fedora-kickstarts)
+
+## Transferring the image to a bootable media
+You can create a bootable USB/SD device (legacy BIOS) using the iso image:
+```
+# livecd-iso-to-disk --format --reset-mbr --msods result/images/boot.iso /dev/sdX
+```
+
+In order to get an EFI bootable media:
+```
+# cp result/images/boot.iso boot-efi.iso
+# cat result/images/efiboot.img >> boot-efi.iso
+# livecd-iso-to-disk --format --reset-mbr --efi boot-efi.iso /dev/sdX
+```
+
 ## Post install tasks
 
 ### Joining the domain
