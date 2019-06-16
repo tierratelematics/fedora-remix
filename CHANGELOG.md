@@ -1,3 +1,8 @@
+## [30.0] - 2019-06-16
+
+### Changed
+- Changes the [default fonts to Google Noto Fonts][3001].
+
 ## [29.0] - 2019-02-07
 
 ### Added
@@ -16,3 +21,6 @@
 ## [28.0] - 2018-11-06
 
 ### Initial release
+
+[3001]: https://fedoraproject.org/wiki/Changes/DefaultFontsToNoto
+
