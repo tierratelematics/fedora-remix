@@ -20,6 +20,7 @@ alsa-plugins-pulseaudio
 alsa-utils
 pulseaudio
 pulseaudio-module-*
+-pulseaudio-module-bluetooth # prefer RPMFusion version to pulseaudio-module-bluetooth
 pulseaudio-utils
 
 # Fonts
