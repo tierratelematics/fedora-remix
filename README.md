@@ -8,6 +8,13 @@ Fedora is a feature-rich operating system which offers a complete suite of sofwa
 
 ## How to build the LiveCD
 [See a detailed description][03] of how to build the live media.
+
+A Fedora system matching the target release version is required to build the images, tipically virtualized.
+Required dependencies are:
+
+* Host: mock qemu-kvm make
+* Build: lorax-lmc-novirt vim-minimal pykickstart livecd-tools make
+
 In a nutshell, you have to choose a version (eg: KDE with language support) and then create a single Kickstart file from the base code:
 
 ```
@@ -17,7 +24,7 @@ In a nutshell, you have to choose a version (eg: KDE with language support) and 
 Then you can build the ISO image using the kickstart just obtained:
 
 ```
- # livemedia-creator --resultdir=result-kde --make-iso --no-virt --project=Fedora --releasever=28 --ks=fedora-tierra.ks
+ # livemedia-creator --resultdir=result-kde --make-iso --no-virt --project=Fedora --releasever=29 --ks=fedora-tierra.ks
 ```
 
 ### Official kickstarts
@@ -26,7 +33,7 @@ You can get the official Fedora kickstarts from: [https://pagure.io/fedora-kicks
 ## Transferring the image to a bootable media
 You can create a bootable USB/SD device (legacy BIOS) using the iso image:
 ```
-# livecd-iso-to-disk --format --reset-mbr --msods result/images/boot.iso /dev/sdX
+# livecd-iso-to-disk --format --reset-mbr --msdos result/images/boot.iso /dev/sdX
 ```
 
 In order to get an EFI bootable media:
@@ -62,5 +69,3 @@ The format is based on [Keep a Changelog][04].
 [02]: https://en.wikipedia.org/wiki/Anaconda_(installer)
 [03]: https://fedoraproject.org/wiki/Livemedia-creator-_How_to_create_and_use_a_Live_CD
 [04]: http://keepachangelog.com/
-
-
