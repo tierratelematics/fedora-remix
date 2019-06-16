@@ -2,6 +2,7 @@
 
 ### Changed
 - Changes the [default fonts to Google Noto Fonts][3001].
+- Enable italian support
 
 ## [29.0] - 2019-02-07
 

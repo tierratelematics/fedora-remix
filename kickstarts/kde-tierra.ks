@@ -2,7 +2,7 @@
 #
 # Provides a workstation based on KDE with MS Active Directory support.
 
-%include kde-desktop.ks
+%include l10n/kde-desktop-it_IT.ks
 
 %packages --excludeWeakdeps
 
@@ -11,7 +11,7 @@ adcli
 krb5-workstation
 libsss_sudo
 oddjob
-oddjob-mkhomedir  
+oddjob-mkhomedir
 realmd
 samba-common-tools
 smb4k
@@ -135,7 +135,7 @@ shortusage() {
     echo -e '\nSYNTAX
 
     tierractl [join | assign]
-    
+
     Manipulates the host configuration: joins the Tierra domain or assigns an user to it.'
 }
 
