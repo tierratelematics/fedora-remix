@@ -1,5 +1,5 @@
 FLAVOR=kde-tierra
-RELEASEVER=29
+RELEASEVER=30
 
 ODIR=results
 
