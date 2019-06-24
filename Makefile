@@ -21,4 +21,4 @@ clean:
 	rm -fr $(ODIR)
 
 test: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
-	qemu-kvm -m 1200 -cdrom $(ODIR)/$(FLAVOR)/images/boot-efi.iso
+	qemu-kvm -m 2560 -cdrom $(ODIR)/$(FLAVOR)/images/boot-efi.iso
