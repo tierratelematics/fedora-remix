@@ -1,5 +1,8 @@
 ## [30.0] - 2019-06-16
 
+### Added
+- Flash plugin
+
 ### Changed
 - Changes the [default fonts to Google Noto Fonts][3001].
 - Enable italian support
@@ -14,7 +17,7 @@
 ### Added
 - Default configuration for Kerberos and Samba.
 ### Changed
-- Better printing and audio support    
+- Better printing and audio support
 ### Fixed
 - Package dependencies.
 - `tierractl` configuration script.
