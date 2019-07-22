@@ -49,6 +49,7 @@ memtest86+
 # The point of a live image is to install
 anaconda
 anaconda-install-env-deps
+anaconda-live
 @anaconda-tools
 
 # Without this, initramfs generation during live image creation fails: #1242586
@@ -57,6 +58,10 @@ syslinux
 
 # anaconda needs the locales available to run for different locales
 glibc-all-langpacks
+
+# no longer in @core since 2018-10, but needed for livesys script
+initscripts
+chkconfig
 %end
 
 %post

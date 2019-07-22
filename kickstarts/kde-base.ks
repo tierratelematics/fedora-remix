@@ -105,9 +105,6 @@ BALOO_EOF
 
 # User global settings
 cat > /etc/skel/.config/kdeglobals << GLOBALS_EOF
-[General]
-XftAntialias=true
-
 [KDE]
 SingleClick=false
 
@@ -137,12 +134,5 @@ Profile=Default
 EmailClient[\$e]=thunderbird
 TerminalClient=false
 EMAILDEFAULTS_EOF
-
-# System global settings
-cat > /etc/kde/kdeglobals << GLOBALS_EOF
-[KDE]
-SingleClick=false
-
-GLOBALS_EOF
 
 %end

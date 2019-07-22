@@ -1,5 +1,6 @@
 FLAVOR=kde-tierra
-RELEASEVER=29
+RELEASEVER=30
+DEVICE=/dev/null # Override from command line for safety
 
 ODIR=results
 
@@ -20,5 +21,11 @@ $(ODIR):
 clean:
 	rm -fr $(ODIR)
 
-test: $(ODIR)/$(FLAVOR)/images/boot.iso
-	qemu-kvm -m 1200 -cdrom $(ODIR)/$(FLAVOR)/images/boot-efi.iso
+test: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
+	qemu-kvm -m 2560 -cdrom $(ODIR)/$(FLAVOR)/images/boot-efi.iso
+
+disk-efi: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
+	livecd-iso-to-disk --format --reset-mbr --efi $(ODIR)/$(FLAVOR)/images/boot-efi.iso $(DEVICE)
+
+disk-bios: $(ODIR)/$(FLAVOR)/images/boot.iso
+	livecd-iso-to-disk --format --reset-mbr --msdos $(ODIR)/$(FLAVOR)/images/boot.iso $(DEVICE)
