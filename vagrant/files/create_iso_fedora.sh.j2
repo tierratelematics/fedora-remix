@@ -1,0 +1,42 @@
+#!/bin/bash
+
+LOG_PATH="/var/log"
+LIVE_MEDIA=`which livemedia-creator`
+OS_VERSION="{{ fedora_ver }}"
+GIT_PATH="/git_fedora_kickstarts"
+KICKSTART_PATH="$GIT_PATH/kickstarts"
+WORKING_DIR="$GIT_PATH/result-kde"
+DATE=`date '+%Y%m%d-%H%M%S'`
+LOG_FILE="$LOG_PATH/create_iso_fedora-$DATE"
+PID="/var/run/anaconda.pid"
+
+exec 3>&1 1>>${LOG_FILE} 2>&1
+
+cd $KICKSTART_PATH
+git pull
+
+if [ -f "$PID" ]; then
+    echo "File $PID found! Anaconda process exist."
+    exit 1
+fi
+
+if [ -d "$WORKING_DIR" ]; then
+        mv $WORKING_DIR $WORKING_DIR-$DATE
+        echo -n "Folder $WORKING_DIR già presente."
+fi
+
+ksflatten --config $KICKSTART_PATH/kde-tierra.ks --output $GIT_PATH/fedora-tierra.ks
+
+#time 70min
+$LIVE_MEDIA --ks=$GIT_PATH/fedora-tierra.ks --no-virt --resultdir $WORKING_DIR --project Fedora-kde-live --make-iso --volid Fedora-KDE-$OS_VERSION --iso-name Fedora-KDE-$OS_VERSION-x86_64.iso --releasever $OS_VERSION --title Fedora-KDE-$OS_VERSION-live
+
+RESULT=$?
+
+if [ $RESULT -eq 0 ]; then
+	cp -av $WORKING_DIR/images/boot.iso $WORKING_DIR/images/boot-efi.iso
+	cat $WORKING_DIR/images/efiboot.img >> $WORKING_DIR/images/boot-efi.iso
+	mv $WORKING_DIR/images/boot.iso $WORKING_DIR/images/Fedora-KDE-$OS_VERSION-x86_64.iso
+	mv $WORKING_DIR/images/boot-efi.iso $WORKING_DIR/images/Fedora-KDE-$OS_VERSION-x86_64-efi.iso
+else
+	echo -n "\nError creating ISO"
+fi

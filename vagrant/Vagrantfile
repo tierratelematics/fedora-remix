@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+#
+#IP="172.28.128.111"
+#HOSTNAME="fedora30KDEvm"
+
+Vagrant.configure(2) do |config|
+
+  config.vm.define "Fedora 30 KDE" do |fedora30KDEvm|
+    fedora30KDEvm.vm.box = "fedora/30-cloud-base"
+    #fedora30KDEvm.vm.box_version = "1546371671"
+    fedora30KDEvm.vm.provider "virtualbox" do |vb|
+      vb.name = "Fedora30Kickstart"
+    end
+    fedora30KDEvm.vm.network "private_network", type: "dhcp", bridge: "Vagrant"
+    #fedora30KDEvm.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
+    fedora30KDEvm.vm.provision "shell", path: "provision.sh", args: ["172.28.128.111","fedora30KDEvm"]
+    fedora30KDEvm.vm.network "forwarded_port", guest: 22, host: 2202
+    fedora30KDEvm.vm.network "forwarded_port", guest: 80, host: 8002
+    fedora30KDEvm.vm.network "forwarded_port", guest: 8000, host: 8002
+    fedora30KDEvm.vm.network "forwarded_port", guest: 8080, host: 8082
+  end
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.cpus = 1
+    vb.memory = 2048
+    vb.customize ["modifyvm", :id, "--groups", '/Tierra_Fedora_Kickstart']
+  end
+end

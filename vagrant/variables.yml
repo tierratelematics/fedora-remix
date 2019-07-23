@@ -1,0 +1,10 @@
+---
+ip: 172.28.128.111 #172.28.128.23
+fedora_ver: 30
+local_user: vagrant
+file_path: "/mnt/c/Users/{{ local_user }}/Documents/Tierra/Script/Vagrant/Fedora-create-live/"
+dir_git: "/git_fedora_kickstarts"
+fedora_kickstarts_repo: 'https://{{ bitbucketuser }}:{{ bitbucketpassword|urlencode() }}@bitbucket.tierraservice.com/scm/it/fedora-kickstarts.git'
+fedora_version: "30"
+box_base: "fedora/{{ fedora_version }}-cloud-base"
+...
