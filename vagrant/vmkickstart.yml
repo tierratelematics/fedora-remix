@@ -1,5 +1,5 @@
 ---
-- hosts: fedora30KDEvm
+- hosts: fedoraconfig
   vars_prompt: 
     - name: "bitbucketuser" 
       prompt: "Enter your bitbucket username: " 

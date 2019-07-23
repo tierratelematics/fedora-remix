@@ -7,26 +7,21 @@
 # you're doing.
 #
 #IP="172.28.128.111"
-#HOSTNAME="fedora30KDEvm"
+#HOSTNAME="fedoraconfig"
 
 Vagrant.configure(2) do |config|
 
-  config.vm.define "Fedora 30 KDE" do |fedora30KDEvm|
-    fedora30KDEvm.vm.box = "fedora/30-cloud-base"
-    #fedora30KDEvm.vm.box_version = "1546371671"
-    fedora30KDEvm.vm.provider "virtualbox" do |vb|
-      vb.name = "Fedora30Kickstart"
-    end
-    fedora30KDEvm.vm.network "private_network", type: "dhcp", bridge: "Vagrant"
-    #fedora30KDEvm.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
-    fedora30KDEvm.vm.provision "shell", path: "provision.sh", args: ["172.28.128.111","fedora30KDEvm"]
-    fedora30KDEvm.vm.network "forwarded_port", guest: 22, host: 2202
-    fedora30KDEvm.vm.network "forwarded_port", guest: 80, host: 8002
-    fedora30KDEvm.vm.network "forwarded_port", guest: 8000, host: 8002
-    fedora30KDEvm.vm.network "forwarded_port", guest: 8080, host: 8082
+  config.vm.define "Fedora VM" do |fedoraconfig|
+    fedoraconfig.vm.box = "fedora/30-cloud-base"
+    ##fedoraconfig.vm.box_version = "1546371671"
+    fedoraconfig.vm.network "private_network", type: "dhcp", bridge: "Vagrant"
+    #fedoraconfig.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
+    fedoraconfig.vm.provision "shell", path: "provision.sh", args: ["172.28.128.111","fedoraconfig"]
+    fedoraconfig.vm.network "forwarded_port", guest: 22, host: 2202
   end
 
   config.vm.provider "virtualbox" do |vb|
+    vb.name = "FedoraKickstart"
     vb.cpus = 1
     vb.memory = 2048
     vb.customize ["modifyvm", :id, "--groups", '/Tierra_Fedora_Kickstart']

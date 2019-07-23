@@ -1,5 +1,5 @@
-[fedora30KDEvm]
-172.28.128.111 ansible_python_interpreter=/usr/bin/python3 #ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/fedora29KDEvm/virtualbox/private_key
+[fedoraconfig]
+172.28.128.111 ansible_python_interpreter=/usr/bin/python3
 
 [all:vars]
 ansible_connection=ssh
