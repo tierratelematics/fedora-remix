@@ -16,7 +16,7 @@
       dnf: name="*" state=latest
     - name: install list of packages
       dnf: 
-        name: ['vim', 'net-tools', 'nmap', 'htop', 'python', 'git', 'libselinux-python', 'cronie', 'cronie-anacron', 'gcc', 'make', 'automake', 'gcc-c++', 'kernel-devel'] 
+        name: ['vim', 'net-tools', 'nmap', 'htop', 'python', 'git', 'libselinux-python', 'cronie', 'cronie-anacron', 'gcc', 'make', 'automake', 'gcc-c++', 'kernel-devel', 'dracut-live'] 
         state: installed
 
   tasks:

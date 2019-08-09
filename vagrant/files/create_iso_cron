@@ -1,4 +1,4 @@
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-#min hour dom mon dow
-0 1 1 * * root /usr/local/sbin/create_iso_fedora.sh
+##min hour dom mon dow
+#0 1 1 * * root /usr/local/sbin/create_iso_fedora.sh

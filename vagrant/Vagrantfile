@@ -8,11 +8,14 @@
 #
 #IP="172.28.128.111"
 #HOSTNAME="fedoraconfig"
+FEDORA_VM_BOX="fedora/30-cloud-base"
+FEDORA_VERSION="30"
 
 Vagrant.configure(2) do |config|
 
   config.vm.define "Fedora VM" do |fedoraconfig|
-    fedoraconfig.vm.box = "fedora/30-cloud-base"
+    #fedoraconfig.vm.box = "fedora/30-cloud-base"
+    fedoraconfig.vm.box = FEDORA_VM_BOX
     ##fedoraconfig.vm.box_version = "1546371671"
     fedoraconfig.vm.network "private_network", type: "dhcp", bridge: "Vagrant"
     #fedoraconfig.vm.synced_folder ".", "/home/vagrant/sync", disabled: true
@@ -21,7 +24,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provider "virtualbox" do |vb|
-    vb.name = "FedoraKickstart"
+    vb.name = "Fedora " + FEDORA_VERSION
     vb.cpus = 1
     vb.memory = 2048
     vb.customize ["modifyvm", :id, "--groups", '/Tierra_Fedora_Kickstart']
