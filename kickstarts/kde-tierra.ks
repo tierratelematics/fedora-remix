@@ -2,8 +2,10 @@
 #
 # Provides a workstation based on KDE with MS Active Directory support.
 
-# Italian language
+# IT language
 #%include l10n/kde-desktop-it_IT.ks
+# EN language
+%include kde-desktop.ks
 
 %packages --excludeWeakdeps
 
@@ -18,6 +20,14 @@ samba-common-tools
 smb4k
 sssd
 sssd-ad
+
+# printer AD integration
+samba-krb5-printing
+samba-winbind
+samba-winbind-clients
+pam_krb5
+krb5-workstation
+kio-extras
 
 # Development
 git
@@ -86,6 +96,9 @@ cat > /etc/samba/smb.toptierra << SAMBA_CONF_EOF
     lock directory = /tmp
     printing = cups
     printcap name = cups
+    client max protocol = SMB3
+    client min protocol = SMB2
+    min protocol = SMB2
 SAMBA_CONF_EOF
 
 # SSSD configuration file for Tierra domain
