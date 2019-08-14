@@ -141,7 +141,7 @@ cat > /etc/sudoers.d/toptierra << SUDOERS_EOF
 %domain\\ users  ALL=(ALL) ALL
 SUDOERS_EOF
 
-cat > /usr/local/sbin/backup_for_upgrade.sh << BACKUPSCRIPT_EOF
+cat > /usr/local/sbin/backup_for_upgrade.sh << i'BACKUPSCRIPT_EOF'
 #!/bin/bash
 ##script for backup specific path of pc
 
