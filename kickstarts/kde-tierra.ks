@@ -2,7 +2,10 @@
 #
 # Provides a workstation based on KDE with MS Active Directory support.
 
-%include l10n/kde-desktop-it_IT.ks
+# IT language
+#%include l10n/kde-desktop-it_IT.ks
+# EN language
+%include kde-desktop.ks
 
 %packages --excludeWeakdeps
 
@@ -17,6 +20,14 @@ samba-common-tools
 smb4k
 sssd
 sssd-ad
+
+# printer AD integration
+samba-krb5-printing
+samba-winbind
+samba-winbind-clients
+pam_krb5
+krb5-workstation
+kio-extras
 
 # Development
 git
@@ -85,6 +96,9 @@ cat > /etc/samba/smb.toptierra << SAMBA_CONF_EOF
     lock directory = /tmp
     printing = cups
     printcap name = cups
+    client max protocol = SMB3
+    client min protocol = SMB2
+    min protocol = SMB2
 SAMBA_CONF_EOF
 
 # SSSD configuration file for Tierra domain
@@ -127,6 +141,48 @@ cat > /etc/sudoers.d/toptierra << SUDOERS_EOF
 %domain\\ users  ALL=(ALL) ALL
 SUDOERS_EOF
 
+cat > /usr/local/sbin/backup_for_upgrade.sh << 'BACKUPSCRIPT_EOF'
+#!/bin/bash
+##script for backup specific path of pc
+
+USER="<username>" #insert username
+DATE=`date '+%Y%m%d_%H%M%S'`
+HOSTNAME=`hostname | awk -F"." '{print $1}'`
+MOUNTPOINT_DEST="/mnt" #insert USB_DRIVE
+DEST="$MOUNTPOINT_DEST/BACKUP_TO_UPGRADE-${HOSTNAME}-$DATE"
+PATH_LOG="${DEST}/LOG"
+DEST_BACKUP="$DEST/BACKUP"
+LOG_FILE="${PATH_LOG}/backup_for_upgrade-${HOSTNAME}-${DATE}.log"
+PATH_TO_BACKUP=("/usr/local" "/home/$USER" "/etc" "/root") #insert folder to backup
+
+mkdir -p ${DEST}
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+mkdir -p ${PATH_LOG}
+mkdir -p ${DEST_BACKUP}
+
+exec 3>&1 1>>${LOG_FILE} 2>&1
+
+#create installed package list
+id > "$DEST/id-$DATE.txt"
+dnf list installed > "$DEST/dnf_list_installed-$DATE.txt"
+rpm -qa > "$DEST/rpm-qa-$DATE.txt"
+flatpak list > "$DEST/flatpak_list-$DATE.txt"
+snap list > "$DEST/snap_list-$DATE.txt"
+cat /home/${USER}/.bash_history > "$DEST/history_${USER}-$DATE.txt"
+
+#create backup
+for path in "${PATH_TO_BACKUP[@]}"
+do 
+        echo -e "\nBackup of ${path}:"
+        tar cjvpf ${DEST_BACKUP}/`basename ${path}`-$DATE.tar.bz2 ${path} >> "${PATH_LOG}/`basename ${path}`-$DATE.log"
+done
+BACKUPSCRIPT_EOF
+
+# domain join and pc assign script
 cat > /usr/sbin/tierractl <<  TIERRACTL_EOF
 #!/bin/bash
 set -e

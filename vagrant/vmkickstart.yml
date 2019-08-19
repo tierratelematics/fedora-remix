@@ -1,0 +1,55 @@
+---
+- hosts: fedoraconfig
+  vars_prompt: 
+    - name: "bitbucketuser" 
+      prompt: "Enter your bitbucket username: " 
+      private: no 
+    - name: "bitbucketpassword" 
+      prompt: "Enter your bitbucket password: " 
+      private: yes
+  become: yes
+  pre_tasks:
+    - name: Set variable for environment
+      include_vars: variables.yml
+      tags: always
+    - name: Upgrade RedHat
+      dnf: name="*" state=latest
+    - name: install list of packages
+      dnf: 
+        name: ['vim', 'net-tools', 'nmap', 'htop', 'python', 'git', 'libselinux-python', 'cronie', 'cronie-anacron', 'gcc', 'make', 'automake', 'gcc-c++', 'kernel-devel', 'dracut-live'] 
+        state: installed
+
+  tasks:
+    - name: install kernel module
+      shell: dnf install -y kernel-modules-$(uname -r)
+    - name: install live-media-creator
+      dnf: 
+        name: ['lorax-lmc-novirt', 'pykickstart']
+        state: installed
+    - name: create directory
+      file:
+        path: "{{ dir_git }}"
+        state: directory
+#    - name: Get the latest version through Git
+#      git:
+#        repo: '{{ fedora_kickstarts_repo }}'
+#        dest: "{{ dir_git }}"
+    - name: Copy creation iso script
+      copy:
+        src: files/create_iso_fedora.sh.j2
+        dest: /usr/local/sbin/create_iso_fedora.sh
+        owner: root
+        group: root
+        mode: a+x
+    - name: Copy creation iso cron
+      copy:
+        src: files/create_iso_cron
+        dest: /etc/cron.d/create_iso
+        owner: root
+        group: root
+      #notify: "Restart Cron"
+    - name: Restart Cron
+      service:
+        name: crond
+        state: restarted
+...
