@@ -25,7 +25,7 @@ images. This is tipically virtualized with docker, so that another Linux host
 can be used.
 
 Required dependencies are: docker qemu-kvm make. Your user must be able to run
-docker and qemu-kvm. 
+docker and qemu-kvm.
 
 This usually means:
 
@@ -46,7 +46,7 @@ $ make clean
 Build the ISO files:
 
 ```
-$ make images
+$ make
 ```
 
 Test the live system in a virtual machine:
@@ -58,7 +58,7 @@ $ make test
 Write the result to a USB drive:
 
 ```
-$ make DEVICE=/dev/sdX disk-efi # or just "disk" for legacy BIOS mode
+$ make DEVICE=/dev/sdX disk-efi # or "disk-bios" for legacy BIOS mode
 ```
 
 Clean up the build machine completely:

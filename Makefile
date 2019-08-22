@@ -30,13 +30,15 @@ disk-bios: $(ODIR)/$(FLAVOR)/images/boot.iso
 
 else
 
-Makefile:
-	@:
-
+# If we are running with docker execute any target with the docker builder
 %: $(ODIR) docker-builder
 	docker run --privileged --cap-add=ALL -v /dev:/dev -v /lib/modules:/lib/modules \
 		-v $(shell pwd)/$(ODIR):/spin/$(ODIR) -it --rm $(BUILDER_IMG) \
 		DEVICE=$(DEVICE) USE_DOCKER=no $@
+
+# Ignore this target when running with docker
+Makefile:
+	@:
 
 endif
 
