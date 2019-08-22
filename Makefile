@@ -6,6 +6,8 @@ USE_DOCKER=yes
 ODIR=results
 BUILDER_IMG=fedora-spin-builder
 
+.PHONY: clean test docker-builder docker-clean images
+
 ifneq ($(USE_DOCKER), yes)
 
 images: $(ODIR)/$(FLAVOR)/images/boot-efi.iso $(ODIR)/$(FLAVOR)/images/boot.iso
@@ -31,7 +33,7 @@ disk-bios: $(ODIR)/$(FLAVOR)/images/boot.iso
 else
 
 # If we are running with docker execute any target with the docker builder
-%: $(ODIR) docker-builder
+%: $(ODIR)
 	docker run --privileged --cap-add=ALL -v /dev:/dev -v /lib/modules:/lib/modules \
 		-v $(shell pwd)/$(ODIR):/spin/$(ODIR) -it --rm $(BUILDER_IMG) \
 		DEVICE=$(DEVICE) USE_DOCKER=no $@

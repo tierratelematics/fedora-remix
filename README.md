@@ -37,6 +37,12 @@ This usually means:
 
 GNU `make` is used to control the build process. For example:
 
+Prepare the docker image used to build:
+
+```
+$ make docker-builder
+```
+
 Start clean:
 
 ```
