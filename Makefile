@@ -35,7 +35,7 @@ Makefile:
 
 %: $(ODIR) docker-builder
 	docker run --privileged --cap-add=ALL -v /dev:/dev -v /lib/modules:/lib/modules \
-		-v $(shell pwd)/$(ODIR):/spin/$(ODIR) --rm $(BUILDER_IMG) \
+		-v $(shell pwd)/$(ODIR):/spin/$(ODIR) -it --rm $(BUILDER_IMG) \
 		DEVICE=$(DEVICE) USE_DOCKER=no $@
 
 endif
