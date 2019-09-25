@@ -1,3 +1,16 @@
+## [30.2] - 2019-08-22
+
+### Added
+- Dhcp client configuration
+
+## [30.1] - 2019-07-16
+
+### Added
+- Backup script for upgrade
+
+### Changed
+- Disable italian support and re-enable english support" 
+
 ## [30.0] - 2019-06-16
 
 ### Added
