@@ -1,8 +1,14 @@
 FLAVOR=kde-tierra
 RELEASEVER=30
 DEVICE=/dev/null # Override from command line for safety
+USE_DOCKER=yes
 
 ODIR=results
+BUILDER_IMG=fedora-spin-builder
+
+.PHONY: clean test docker-builder docker-clean images
+
+ifneq ($(USE_DOCKER), yes)
 
 images: $(ODIR)/$(FLAVOR)/images/boot-efi.iso $(ODIR)/$(FLAVOR)/images/boot.iso
 
@@ -15,17 +21,37 @@ $(ODIR)/$(FLAVOR)/images/boot.iso: $(ODIR)/$(FLAVOR)-flattened.ks
 $(ODIR)/$(FLAVOR)-flattened.ks: $(ODIR) $(wildcard kickstarts/*.ks)
 	ksflatten --config kickstarts/$(FLAVOR).ks --output $(ODIR)/$(FLAVOR)-flattened.ks
 
-$(ODIR):
-	mkdir -p $(ODIR)
-
 clean:
-	rm -fr $(ODIR)
-
-test: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
-	qemu-kvm -m 2560 -cdrom $(ODIR)/$(FLAVOR)/images/boot-efi.iso
+	rm -fr $(ODIR)/*
 
 disk-efi: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
 	livecd-iso-to-disk --format --reset-mbr --efi $(ODIR)/$(FLAVOR)/images/boot-efi.iso $(DEVICE)
 
 disk-bios: $(ODIR)/$(FLAVOR)/images/boot.iso
 	livecd-iso-to-disk --format --reset-mbr --msdos $(ODIR)/$(FLAVOR)/images/boot.iso $(DEVICE)
+
+else
+
+# If we are running with docker execute any target with the docker builder
+%: $(ODIR)
+	docker run --privileged --cap-add=ALL -v /dev:/dev -v /lib/modules:/lib/modules \
+		-v $(shell pwd)/$(ODIR):/spin/$(ODIR) -it --rm $(BUILDER_IMG) \
+		DEVICE=$(DEVICE) USE_DOCKER=no $@
+
+# Ignore this target when running with docker
+Makefile:
+	@:
+
+endif
+
+docker-builder:
+	docker build . -t $(BUILDER_IMG)
+
+docker-clean:
+	docker images -f "reference=$(BUILDER_IMG)" -q | xargs docker rmi -f
+
+$(ODIR):
+	mkdir -p $(ODIR)
+
+test: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
+	qemu-kvm -m 2560 -cdrom $(ODIR)/$(FLAVOR)/images/boot-efi.iso
