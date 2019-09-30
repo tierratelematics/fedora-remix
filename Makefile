@@ -6,9 +6,10 @@ USE_DOCKER=yes
 ODIR=results
 BUILDER_IMG=fedora-spin-builder
 
-.PHONY: clean test docker-builder docker-clean images
 
 ifneq ($(USE_DOCKER), yes)
+
+.PHONY: clean test docker-builder docker-clean images disk-efi disk-bios
 
 images: $(ODIR)/$(FLAVOR)/images/boot-efi.iso $(ODIR)/$(FLAVOR)/images/boot.iso
 
@@ -18,7 +19,7 @@ $(ODIR)/$(FLAVOR)/images/boot-efi.iso: $(ODIR)/$(FLAVOR)/images/boot.iso
 $(ODIR)/$(FLAVOR)/images/boot.iso: $(ODIR)/$(FLAVOR)-flattened.ks
 	cd $(ODIR); livemedia-creator --resultdir=$(FLAVOR) --make-iso --no-virt --project=Fedora --releasever=$(RELEASEVER) --ks=$(FLAVOR)-flattened.ks
 
-$(ODIR)/$(FLAVOR)-flattened.ks: $(ODIR) $(wildcard kickstarts/*.ks)
+$(ODIR)/$(FLAVOR)-flattened.ks: $(wildcard kickstarts/*.ks) | ${ODIR}
 	ksflatten --config kickstarts/$(FLAVOR).ks --output $(ODIR)/$(FLAVOR)-flattened.ks
 
 clean:
@@ -33,6 +34,9 @@ disk-bios: $(ODIR)/$(FLAVOR)/images/boot.iso
 else
 
 # If we are running with docker execute any target with the docker builder
+
+.PHONY: %
+
 %: $(ODIR)
 	docker run --privileged --cap-add=ALL -v /dev:/dev -v /lib/modules:/lib/modules \
 		-v $(shell pwd)/$(ODIR):/spin/$(ODIR) -it --rm $(BUILDER_IMG) \
