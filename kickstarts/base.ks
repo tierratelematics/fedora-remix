@@ -301,7 +301,7 @@ EOF
 
 # work around for poor key import UI in PackageKit
 rm -f /var/lib/rpm/__db*
-releasever=$(rpm -q --qf '%{version}\n' --whatprovides system-release)
+releasever=$(rpm --eval '%{fedora}')
 basearch=$(uname -i)
 # Import keys of Fedora and 3rd party repository
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-*
