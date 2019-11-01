@@ -25,6 +25,7 @@ shutdown
 
 %packages --excludeWeakdeps
 @base-x
+@container-management
 # @guest-desktop-agents
 @standard
 @core
