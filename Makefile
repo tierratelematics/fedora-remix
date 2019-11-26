@@ -1,4 +1,4 @@
-FLAVOR=kde-tierra
+FLAVOR=kde-domain
 RELEASEVER=30
 DEVICE=/dev/null # Override from command line for safety
 USE_DOCKER=yes
@@ -40,7 +40,7 @@ else
 		DEVICE=$(DEVICE) USE_DOCKER=no $@
 
 default: images
-.PHONY: % default
+.PHONY: %
 
 endif
 

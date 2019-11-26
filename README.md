@@ -94,14 +94,14 @@ In a nutshell, you have to choose a version (eg: KDE with language support) and
 then create a single Kickstart file from the base code:
 
 ```
- # ksflatten --config kickstarts/kde-tierra.ks --output fedora-tierra.ks
+ # ksflatten --config kickstarts/kde-domain.ks --output fedora-kickstarts.ks
 ```
 
 Then you can build the ISO image using the kickstart just obtained:
 
 ```
  # livemedia-creator --resultdir=result-kde --make-iso --no-virt \
-   --project=Fedora --releasever=30 --ks=fedora-tierra.ks
+   --project=Fedora --releasever=30 --ks=fedora-kickstarts.ks
 ```
 
 You can create a bootable USB/SD device (legacy BIOS) using the iso image:
@@ -122,10 +122,10 @@ In order to get an EFI bootable media:
 
 ### Joining the domain
 
-You can join a newly installed host to the Tierra domain using the following command:
+You can join a newly installed host to the domain using the following command:
 
 ```
- # tierractl join
+ # domainctl join
 ```
 
 You will be prompted for credential of an administrator.
@@ -135,7 +135,7 @@ You will be prompted for credential of an administrator.
 You can assign the worksation to an user using the following command:
 
 ```
- # tierractl assign
+ # domainctl assign
 ```
 
 You will be prompted for a domain username.
