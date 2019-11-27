@@ -1,7 +1,0 @@
-[fedoraconfig]
-172.28.128.111 ansible_python_interpreter=/usr/bin/python3
-
-[all:vars]
-ansible_connection=ssh
-ansible_ssh_user=vagrant
-ansible_ssh_pass=vagrant
