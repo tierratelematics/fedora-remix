@@ -1,3 +1,8 @@
+## [31.0] - 2019-11-27
+
+### Changed
+- Fedora 31
+
 ## [30.2] - 2019-08-22
 
 ### Added
@@ -9,7 +14,7 @@
 - Backup script for upgrade
 
 ### Changed
-- Disable italian support and re-enable english support" 
+- Disable italian support and re-enable english support"
 
 ## [30.0] - 2019-06-16
 

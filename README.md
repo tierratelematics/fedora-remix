@@ -101,7 +101,7 @@ Then you can build the ISO image using the kickstart just obtained:
 
 ```
  # livemedia-creator --resultdir=result-kde --make-iso --no-virt \
-   --project=Fedora --releasever=30 --ks=fedora-kickstarts.ks
+   --project=Fedora --releasever=31 --ks=fedora-kickstarts.ks
 ```
 
 You can create a bootable USB/SD device (legacy BIOS) using the iso image:

@@ -1,5 +1,5 @@
 FLAVOR=kde-domain
-RELEASEVER=30
+RELEASEVER=31
 DEVICE=/dev/null # Override from command line for safety
 USE_DOCKER=yes
 
