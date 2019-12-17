@@ -1,7 +1,11 @@
 ## [31.0] - 2019-11-27
 
+### Removed
+- Clementine
+
 ### Changed
 - Fedora 31
+- Adopt RPM Fusion "tainted" repos.
 
 ## [30.2] - 2019-08-22
 

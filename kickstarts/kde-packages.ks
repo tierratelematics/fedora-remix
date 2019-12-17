@@ -9,6 +9,7 @@
 -kdepim*
 -system-config-printer
 
+PackageKit-gstreamer-plugin
 adwaita-gtk2-theme
 ark
 bluedevil
@@ -18,6 +19,7 @@ bluez-tools
 breeze-gtk
 cagibi
 dolphin
+fedora-release-kde
 firewall-config
 gnome-keyring-pam
 gwenview

@@ -11,13 +11,15 @@
 -abrt*
 -fedora-release-notes
 -fpaste
--initial-setup
 -rsyslog
 -sendmail
 
-# Audio
+# Multimedia
 alsa-plugins-pulseaudio
 alsa-utils
+mesa-dri-drivers
+mesa-vulkan-drivers
+pipewire-utils
 pulseaudio
 pulseaudio-module-*
 -pulseaudio-module-bluetooth # prefer RPMFusion version to pulseaudio-module-bluetooth
@@ -34,9 +36,11 @@ wine-fonts
 # Tools
 @networkmanager-submodules
 dnf-plugins-core
-fedora-release-workstation
+drpm
 flatpak
 htop
+plymouth-system-theme
+rsync
 vim-enhanced
 unar
 
@@ -53,7 +57,7 @@ echo ""
 ln -s /usr/share/wine/fonts /usr/share/fonts/wine
 
 # Antialiasing by default.
-# Set DejaVu fonts as preferred family.
+# Set Noto fonts as preferred family.
 cat > /etc/fonts/local.conf << EOF_FONTS
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">

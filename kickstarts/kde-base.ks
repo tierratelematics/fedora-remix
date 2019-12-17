@@ -110,6 +110,12 @@ SingleClick=false
 
 GLOBALS_EOF
 
+# Sudo settings
+cat > /etc/skel/.config/kdesurc << KDESU_EOF
+[super-user-command]
+super-user-command=sudo
+KDESU_EOF
+
 # Launcher settings
 cat > /etc/skel/.config/klaunchrc << KLAUNCHRC_EOF
 [BusyCursorSettings]

@@ -16,7 +16,6 @@ ktorrent
 thunderbird
 
 # Multimedia
-clementine
 k3b
 k3b-extras-freeworld
 

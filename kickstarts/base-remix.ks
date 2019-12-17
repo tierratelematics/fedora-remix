@@ -7,36 +7,28 @@ repo --name=rpmfusion-free --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?
 repo --name=rpmfusion-free-updates --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-$releasever&arch=$basearch
 repo --name=rpmfusion-nonfree --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-$releasever&arch=$basearch
 repo --name=rpmfusion-nonfree-updates --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
-repo --name=remi --includepkgs=libdvd*,remi-release* --baseurl=http://rpms.famillecollet.com/fedora/$releasever/remi/$basearch/
+repo --name=rpmfusion-free-release-tainted --metalink=https://mirrors.rpmfusion.org/metalink?repo=free-fedora-tainted-$releasever&arch=$basearch
 repo --name=adobe --baseurl=http://linuxdownload.adobe.com/linux/$basearch/
 
 %packages --excludeWeakdeps
 
 # RPM Fusion repositories
 rpmfusion-free-release
+rpmfusion-free-release-tainted
 rpmfusion-nonfree-release
-
-# Remi repositories (disabled)
-remi-release
+rpmfusion-nonfree-release-tainted
 
 # Appstream data
 rpmfusion-*-appstream-data
 
-# @multimedia
-PackageKit-gstreamer-plugin
-gstreamer-plugins-bad-free
-gstreamer-plugins-good
-
 # Multimedia
-gstreamer-ffmpeg
 gstreamer*-libav
 gstreamer*-vaapi
-gstreamer*-plugins-bad
-gstreamer*-plugins-bad-*free
+gstreamer*-plugins-bad-free
 gstreamer*-plugins-bad-freeworld
 gstreamer*-plugins-good
 gstreamer*-plugins-ugly
-gstreamer1-plugin-mpg123
+gstreamer*-plugins-ugly-free
 libdvdcss
 flash-plugin
 
