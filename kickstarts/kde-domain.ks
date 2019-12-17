@@ -39,7 +39,7 @@ echo "POST DOMAIN ******************************************"
 echo ""
 
 # Configure Kerberos
-cat > /etc/krb5.template << KRB5_CONF_EOF
+cat > /etc/krb5.conf.template << KRB5_CONF_EOF
 includedir /etc/krb5.conf.d/
 
 [libdefaults]
