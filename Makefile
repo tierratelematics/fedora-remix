@@ -1,4 +1,4 @@
-FLAVOR=remix-kde
+FLAVOR=remix-gnome
 RELEASEVER=31
 DEVICE=/dev/null # Override from command line for safety
 USE_DOCKER=yes

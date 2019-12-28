@@ -4,3 +4,4 @@
 
 %include mixins/nonfree.ks
 %include mixins/printing.ks
+%include mixins/desktop.ks

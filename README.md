@@ -90,17 +90,17 @@ To run these, you will also need:
 # dnf install lorax-lmc-novirt vim-minimal pykickstart livecd-tools
 ```
 
-In a nutshell, you have to choose a version (eg: KDE with language support) and
-then create a single Kickstart file from the base code:
+In a nutshell, you have to choose a version (eg: KDE or GNOME) and then
+create a single Kickstart file from the base code:
 
 ```
- # ksflatten --config kickstarts/kde-domain.ks --output fedora-kickstarts.ks
+ # ksflatten --config kickstarts/remix-gnome.ks --output fedora-kickstarts.ks
 ```
 
 Then you can build the ISO image using the kickstart just obtained:
 
 ```
- # livemedia-creator --resultdir=result-kde --make-iso --no-virt \
+ # livemedia-creator --resultdir=results/remix-gnome --make-iso --no-virt \
    --project=Fedora --releasever=31 --ks=fedora-kickstarts.ks
 ```
 
