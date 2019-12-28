@@ -2,7 +2,7 @@
 #
 # Defines the basics for a desktop workstation.
 
-%include base.ks
+%include fedora-live-base.ks
 
 %packages --excludeWeakdeps
 

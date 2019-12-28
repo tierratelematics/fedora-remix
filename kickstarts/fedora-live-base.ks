@@ -1,4 +1,4 @@
-# base.ks
+# fedora-live-base.ks
 #
 # Defines the basics for all kickstarts
 # Does not include localization packages or configuration
@@ -21,7 +21,7 @@ network --bootproto=dhcp --device=link --activate
 rootpw --lock --iscrypted locked
 shutdown
 
-%include base-repo.ks
+%include fedora-repo.ks
 
 %packages --excludeWeakdeps
 @base-x

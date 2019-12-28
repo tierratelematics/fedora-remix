@@ -1,4 +1,4 @@
-# kde-base.ks
+# fedora-live-kde-base.ks
 #
 # Defines the basics for the KDE desktop.
 
