@@ -1,24 +1,17 @@
-# base-it_IT.ks
+# it_IT-base.ks
 #
 # Defines the basics for a workstation in italian.
+
+%include it_IT-support.ks
 
 lang it_IT.UTF-8 --addsupport=it_IT.UTF-8
 keyboard --xlayouts=it --vckeymap=it
 timezone Europe/Rome
 
-%packages
-
-glibc-langpack-it
-hunspell-it
-langpacks-it
-
-%end
-
-
 %post
 
 echo ""
-echo "POST BASE it_IT **************************************"
+echo "POST it_IT-base **************************************"
 echo ""
 
 # Set italian locale

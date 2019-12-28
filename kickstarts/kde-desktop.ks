@@ -3,7 +3,6 @@
 # Provides a complete KDE desktop. Includes office, print and scan support.
 
 %include kde-box.ks
-%include base-printing.ks
 
 %packages --excludeWeakdeps
 

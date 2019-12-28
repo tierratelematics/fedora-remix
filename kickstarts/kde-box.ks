@@ -3,7 +3,6 @@
 # Provides a minimal Linux box based on KDE desktop.
 
 %include kde-base.ks
-%include base-remix.ks
 
 %packages --excludeWeakdeps
 

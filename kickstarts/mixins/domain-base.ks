@@ -1,11 +1,6 @@
-# kde-domain.ks
+# domain-base.ks
 #
-# Provides a workstation based on KDE with MS Active Directory support.
-
-# IT language
-#%include l10n/kde-desktop-it_IT.ks
-# EN language
-%include kde-desktop.ks
+# Provides MS Active Directory support.
 
 %packages --excludeWeakdeps
 
@@ -20,18 +15,7 @@ pam_krb5
 krb5-workstation
 kio-extras
 
-# Development
-git
-gitflow
-
-# Networking
-plasma-nm-openconnect
-
-# Security
-keepassxc
-
 %end
-
 
 %post
 echo ""

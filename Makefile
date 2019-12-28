@@ -1,4 +1,4 @@
-FLAVOR=kde-domain
+FLAVOR=remix-kde
 RELEASEVER=31
 DEVICE=/dev/null # Override from command line for safety
 USE_DOCKER=yes

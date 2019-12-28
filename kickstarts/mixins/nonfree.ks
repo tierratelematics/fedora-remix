@@ -1,4 +1,4 @@
-# base-remix.ks
+# nonfree.ks
 #
 # Adds extra repos for software that the Fedora Project doesn't want to ship.
 
@@ -43,7 +43,7 @@ unrar
 %post
 
 echo ""
-echo "POST BASE REMIX **************************************"
+echo "POST nonfree **************************************"
 echo ""
 
 # A reduced version of Remi repository

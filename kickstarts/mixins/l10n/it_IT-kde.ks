@@ -1,8 +1,8 @@
-# kde-base-it_IT.ks
+# it_IT-kde.ks
 #
 # Provides italian localization for the KDE desktop.
 
-%include base-it_IT.ks
+%include it_IT-base.ks
 
 %packages --excludeWeakdeps
 
@@ -13,7 +13,7 @@ kde-l10n-Italian
 %post
 
 echo ""
-echo "POST KDE BASE it_IT **********************************"
+echo "POST it_IT-kde **********************************"
 echo ""
 
 # Defaults for user configuration
