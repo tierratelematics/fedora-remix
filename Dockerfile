@@ -5,6 +5,4 @@ RUN dnf install -y lorax-lmc-novirt vim-minimal pykickstart livecd-tools make &&
 RUN mkdir /spin
 WORKDIR /spin
 
-COPY Makefile .
-COPY kickstarts kickstarts
 ENTRYPOINT [ "make" ]
