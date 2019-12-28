@@ -1,16 +1,17 @@
 # fedora-live-base.ks
 #
-# Defines the basics for all kickstarts
+# Defines the basics for all kickstarts in the fedora-live branch
+# Does not include package selection (other then mandatory)
 # Does not include localization packages or configuration
 #
 # Does includes "default" language configuration (kickstarts including
 # this template can override these settings)
 
 lang en_US.UTF-8
-keyboard --xlayouts=it --vckeymap=it
-timezone Europe/Rome
+keyboard us
+timezone US/Eastern
 auth --useshadow --passalgo=sha512
-selinux --disabled
+selinux --enforcing
 firewall --enabled --service=mdns
 xconfig --startxonboot
 zerombr
@@ -23,12 +24,17 @@ shutdown
 
 %include fedora-repo.ks
 
-%packages --excludeWeakdeps
+%packages
 @base-x
-@container-management
+@guest-desktop-agents
 @standard
 @core
+@fonts
+@input-methods
+@dial-up
+@multimedia
 @hardware-support
+@printing
 
 # Explicitly specified here:
 # <notting> walters: because otherwise dependency loops cause yum issues.
@@ -47,6 +53,9 @@ anaconda
 anaconda-install-env-deps
 anaconda-live
 @anaconda-tools
+
+# Need aajohan-comfortaa-fonts for the SVG rnotes images
+aajohan-comfortaa-fonts
 
 # Without this, initramfs generation during live image creation fails: #1242586
 dracut-live
