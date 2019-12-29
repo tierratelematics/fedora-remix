@@ -48,7 +48,7 @@ unar
 %post
 
 echo ""
-echo "POST BASE DESKTOP ************************************"
+echo "POST desktop-base ************************************"
 echo ""
 
 # Link Wine fonts to system folder
@@ -99,7 +99,7 @@ cat > /etc/fonts/local.conf << EOF_FONTS
 	<alias>
 		<family>monospace</family>
 		<prefer>
-			<family>Noto Sans Mono</family>
+			<family>Noto Sans Mono Condensed</family>
 			<family>DejaVu Sans Mono</family>
 			<family>Liberation Mono</family>
             <family>Courier New</family>
