@@ -8,6 +8,7 @@
 
 # Networking
 plasma-nm-openconnect
+kio-extras
 
 # Security
 keepassxc

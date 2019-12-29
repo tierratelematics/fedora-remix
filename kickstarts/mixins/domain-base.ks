@@ -13,7 +13,6 @@ samba-winbind
 samba-winbind-clients
 pam_krb5
 krb5-workstation
-kio-extras
 
 %end
 
