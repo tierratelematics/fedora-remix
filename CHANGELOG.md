@@ -1,11 +1,19 @@
-## [31.0] - 2019-11-27
+## [31.0] - 2019-12-29
+
+### Added
+- Gimp, Inkscape
+- development tools
+- dash-to-dock, app and places menu in GNOME
+- Libreoffice support for english
 
 ### Removed
-- Clementine
+- Clementine (KDE)
 
 ### Changed
 - Fedora 31
-- Adopt RPM Fusion "tainted" repos.
+- Gnome is now the default desktop. KDE remains available
+- Use the Condensed variant of Noto Monospace
+- Adopt RPM Fusion "tainted" repos
 
 ## [30.2] - 2019-08-22
 
@@ -18,7 +26,7 @@
 - Backup script for upgrade
 
 ### Changed
-- Disable italian support and re-enable english support"
+- Disable italian support and re-enable english support
 
 ## [30.0] - 2019-06-16
 
@@ -49,4 +57,3 @@
 ### Initial release
 
 [3001]: https://fedoraproject.org/wiki/Changes/DefaultFontsToNoto
-

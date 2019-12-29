@@ -2,15 +2,30 @@
 
 ## Purpose
 
-This project is a [Fedora Remix][01] and aims to offer a complete system for
-development usage with Active Directory domain support. You can build a LiveCD
-and try the software, and then install it in your PC if you want.
+This repository contains the build scripts for a [Fedora Remix][01] that aims
+to offer a complete GNU/Linux desktop, fully ready for real-life
+home/development/office usage, minimizing the post installation phase that is
+still difficult or error prone on most distros.
+
+We have taken care of:
+
+* multimedia support
+* font configurations
+* tools and software selection
+* little desktop tweaks
+* Active Directory integration
+
+We have GNOME and KDE flavors and it's quite easy to toggle features or add
+extra customizations.
+
+You can build a LiveCD and try the software, and then install it in your PC
+if you want.
 
 ## Why Fedora?
 
 Fedora is a feature-rich operating system which offers a complete suite of
 sofware for many purposes. It is flexible enough to get a custom version by
-using the installer ([see here for more details][02]).  The build process can
+using the installer ([see here for more details][02]). The build process can
 be described through Kickstart files and can be modified to get new variants.
 
 ### Official kickstarts
@@ -55,6 +70,12 @@ Build the ISO files:
 $ make
 ```
 
+Or:
+
+```
+$ make FLAVOR=remix-kde
+```
+
 Test the live system in a virtual machine:
 
 ```
@@ -79,6 +100,13 @@ be run directly, but root is probably required:
 ```
 # make USE_DOCKER=no images
 ```
+
+### Customizing the build
+
+By editing `remix-*.ks` individual customizations can be excluded,
+localization can be changed. By default everything is included.
+
+We are happy to accept PRs for additional languages and extra features.
 
 ### Useful manual build commands
 
@@ -120,7 +148,7 @@ In order to get an EFI bootable media:
 
 ## Post install tasks
 
-### Joining the domain
+### Joining an Active Directory domain
 
 You can join a newly installed host to the domain using the following command:
 
