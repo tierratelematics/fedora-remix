@@ -1,4 +1,4 @@
-# fedora-kickstarts
+# Fedora Remix
 
 ## Purpose
 
