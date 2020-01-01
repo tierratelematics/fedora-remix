@@ -23,6 +23,9 @@ vlc
 brasero
 brasero-nautilus
 
+seahorse
+seahorse-nautilus
+
 # tools
 gparted
 
