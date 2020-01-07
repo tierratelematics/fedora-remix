@@ -12,6 +12,8 @@ repo --name=adobe --baseurl=http://linuxdownload.adobe.com/linux/$basearch/
 
 %packages --excludeWeakdeps
 
+fedora-workstation-repositories
+
 # RPM Fusion repositories
 rpmfusion-free-release
 rpmfusion-free-release-tainted
