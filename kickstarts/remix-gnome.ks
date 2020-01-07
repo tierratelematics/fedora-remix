@@ -13,5 +13,5 @@
 %include mixins/l10n/en_US-support.ks
 
 # features
-#%include mixins/development-gnome.ks
-#%include mixins/domain-gnome.ks
+%include mixins/development-gnome.ks
+%include mixins/domain-gnome.ks
