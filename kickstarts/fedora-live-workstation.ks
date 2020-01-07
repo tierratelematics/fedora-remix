@@ -10,8 +10,6 @@
 #
 #include snippets/packagekit-cached-metadata.ks
 
-part / --size 6656
-
 %post
 
 cat >> /etc/rc.d/init.d/livesys << EOF
