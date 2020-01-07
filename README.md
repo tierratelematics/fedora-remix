@@ -50,6 +50,12 @@ This usually means:
 # gpasswd -a $USER -g kvm
 ```
 
+To build, selinux must be set off:
+
+```
+# setenforce 0
+```
+
 GNU `make` is used to control the build process. For example:
 
 Prepare the docker image used to build:
