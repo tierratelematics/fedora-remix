@@ -191,7 +191,7 @@ case $INPUT_CMD in
         systemctl restart sssd
 
         backup /etc/polkit-1/rules.d/40-domain.rules
-        sed -e "s/\unix-user:[^\"]+/unix-user:$assignee_user/" </etc/polkit-1/rules.d/40-domain.rules.template >/etc/polkit-1/rules.d/40-domain.rules
+        sed -e "s/unix-user:[^\"]\+/unix-user:$assignee_user/" </etc/polkit-1/rules.d/40-domain.rules.template >/etc/polkit-1/rules.d/40-domain.rules
 
         echo "Adding $assignee_user to wheel group..."
         usermod --append --groups wheel $assignee_user
