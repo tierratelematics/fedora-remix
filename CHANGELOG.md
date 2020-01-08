@@ -2,7 +2,6 @@
 
 ### Added
  - Seahorse
- - Enable flathub repository
 
 ## [31.0] - 2019-12-29
 
