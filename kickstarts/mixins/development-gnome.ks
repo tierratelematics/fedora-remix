@@ -7,5 +7,6 @@
 %packages
 
 gitg
+meld
 
 %end

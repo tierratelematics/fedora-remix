@@ -1,7 +1,8 @@
 ## [31.1] - 
 
 ### Added
- - Seahorse
+ - Seahorse (GNOME)
+ - Meld (GNOME)
 
 ## [31.0] - 2019-12-29
 
