@@ -3,6 +3,7 @@
 ### Added
  - Seahorse (GNOME)
  - Meld (GNOME)
+ - command not found hook
 
 ## [31.0] - 2019-12-29
 
