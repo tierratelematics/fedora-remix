@@ -51,6 +51,10 @@ monospace-font-name='Noto Sans Mono Condensed 11'
 
 [org/gnome/desktop/wm/preferences]
 titlebar-font='Noto Sans 11'
+
+[org/gnome/settings-daemon/plugins/xsettings]
+antialiasing='rgba'
+hinting='full'
 EOF_FONTS
 
 # Enable dash-to-dock, app & places menus
