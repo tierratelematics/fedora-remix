@@ -5,6 +5,7 @@
  - Meld (GNOME)
  - menulibre (GNOME)
  - command not found hook
+ - sshd is enabled by default (domain)
 
 ## [31.0] - 2019-12-29
 

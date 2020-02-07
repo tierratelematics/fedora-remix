@@ -16,6 +16,8 @@ krb5-workstation
 
 %end
 
+services --enabled=sshd
+
 %post
 echo ""
 echo "POST DOMAIN ******************************************"
