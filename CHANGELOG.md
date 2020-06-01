@@ -1,4 +1,9 @@
-## [31.1] - 
+## [32.0] -
+
+### Changed
+- Fedora 32
+
+## [31.1] - 2020-02-07
 
 ### Added
  - Seahorse (GNOME)
