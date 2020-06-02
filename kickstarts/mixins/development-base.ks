@@ -2,10 +2,13 @@
 #
 # Development support base.
 
+repo --name=vscode --baseurl=https://packages.microsoft.com/yumrepos/vscode
+
 %packages
 
 @development-tools
 git
+code
 
 %end
 

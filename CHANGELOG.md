@@ -1,5 +1,8 @@
 ## [32.0] -
 
+### Added
+ - MS Visual Studio Code (development)
+
 ### Changed
 - Fedora 32
 - menulibre replaced by appeditor (GNOME)
