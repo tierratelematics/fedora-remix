@@ -3,6 +3,7 @@
 ### Added
  - MS Visual Studio Code (development)
  - MS Teams (commented by default)
+ - tmate
 
 ### Changed
 - Fedora 32

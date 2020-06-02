@@ -40,6 +40,7 @@ plymouth-system-theme
 rsync
 vim-enhanced
 unar
+tmate
 
 %end
 
