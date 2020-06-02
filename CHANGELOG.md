@@ -3,6 +3,7 @@
 ### Changed
 - Fedora 32
 - menulibre replaced by appeditor (GNOME)
+- install packages on command not found enabled everywhere
 
 ### Removed
 - giflow (unmaintained)

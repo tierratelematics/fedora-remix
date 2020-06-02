@@ -5,7 +5,6 @@
 %packages --excludeWeakdeps
 
 # Unwanted stuff
--PackageKit-command-not-found
 -abrt*
 -fedora-release-notes
 -fpaste
