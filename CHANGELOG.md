@@ -2,6 +2,7 @@
 
 ### Added
  - MS Visual Studio Code (development)
+ - MS Teams (commented by default)
 
 ### Changed
 - Fedora 32
