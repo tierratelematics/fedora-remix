@@ -7,7 +7,6 @@
 PackageKit-command-not-found
 @development-tools
 git
-gitflow
 
 %end
 

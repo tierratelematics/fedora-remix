@@ -4,6 +4,7 @@
 - Fedora 32
 
 ### Removed
+- giflow (unmaintained)
 - pam_krb5 (superseeded)
 
 ## [31.1] - 2020-02-07
