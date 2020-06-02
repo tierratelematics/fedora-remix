@@ -2,6 +2,7 @@
 
 ### Changed
 - Fedora 32
+- menulibre replaced by appeditor (GNOME)
 
 ### Removed
 - giflow (unmaintained)

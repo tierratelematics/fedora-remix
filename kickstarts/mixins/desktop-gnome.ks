@@ -9,7 +9,7 @@
 # desktop
 gnome-shell-extension-dash-to-dock
 gnome-tweaks
-menulibre
+appeditor
 
 # networking
 firewall-config
