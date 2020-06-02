@@ -11,7 +11,6 @@
 samba-krb5-printing
 samba-winbind
 samba-winbind-clients
-pam_krb5
 krb5-workstation
 
 %end

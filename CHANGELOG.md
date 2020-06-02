@@ -3,6 +3,9 @@
 ### Changed
 - Fedora 32
 
+### Removed
+- pam_krb5 (superseeded)
+
 ## [31.1] - 2020-02-07
 
 ### Added
