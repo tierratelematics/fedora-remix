@@ -8,5 +8,6 @@
 
 # Networking
 NetworkManager-openconnect-gnome
+NetworkManager-openvpn-gnome
 
 %end
