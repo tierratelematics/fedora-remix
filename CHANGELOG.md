@@ -4,6 +4,7 @@
  - MS Visual Studio Code (development)
  - MS Teams (commented by default)
  - tmate
+ - MS Exchange support via evolution-ews (GNOME)
 
 ### Changed
 - Fedora 32
