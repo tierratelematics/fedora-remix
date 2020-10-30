@@ -1,5 +1,8 @@
 ## [32.0] -
 
+### Added
+ - ghex hexadecimal editor (GNOME development)
+
 ### Changed
 - Fedora 33
 

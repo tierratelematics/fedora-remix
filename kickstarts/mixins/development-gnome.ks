@@ -8,5 +8,6 @@
 
 gitg
 meld
+ghex
 
 %end
