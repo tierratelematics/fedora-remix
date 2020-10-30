@@ -3,6 +3,7 @@
 ### Added
  - ghex hexadecimal editor (GNOME development)
  - Emoji font support
+ - Cisco open h264 codec for Firefox
 
 ### Changed
 - Fedora 33

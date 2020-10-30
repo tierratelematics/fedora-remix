@@ -11,6 +11,7 @@
 @container-management
 @core
 @firefox
+mozilla-openh264
 @fonts
 @gnome-desktop
 @guest-desktop-agents

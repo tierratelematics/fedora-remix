@@ -61,9 +61,6 @@ svgpart
 sweeper
 xdg-desktop-portal-kde
 
-# Internet
-firefox
-
 # Tools
 gparted
 
