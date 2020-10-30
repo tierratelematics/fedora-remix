@@ -2,6 +2,7 @@
 
 ### Added
  - ghex hexadecimal editor (GNOME development)
+ - Emoji font support
 
 ### Changed
 - Fedora 33

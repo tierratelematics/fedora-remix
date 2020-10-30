@@ -26,6 +26,7 @@ pulseaudio-utils
 google-noto-sans-fonts
 google-noto-sans-mono-fonts
 google-noto-serif-fonts
+google-noto-emoji-color-fonts
 liberation-mono-fonts
 liberation-s*-fonts
 wine-fonts
