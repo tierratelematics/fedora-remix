@@ -1,5 +1,10 @@
 ## [32.0] -
 
+### Changed
+- Fedora 33
+
+## [32.0] - 2020-06-09
+
 ### Added
  - MS Visual Studio Code (development)
  - MS Teams (commented by default)
