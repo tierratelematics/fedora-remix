@@ -309,10 +309,6 @@ EOF
 
 # work around for poor key import UI in PackageKit
 rm -f /var/lib/rpm/__db*
-releasever=$(rpm --eval '%{fedora}')
-basearch=$(uname -i)
-# Import keys of Fedora and 3rd party repository
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-*
 echo "Packages within this LiveCD"
 rpm -qa --qf '%{size}\t%{name}-%{version}-%{release}.%{arch}\n' |sort -rn
 # Note that running rpm recreates the rpm db files which aren't needed or wanted
