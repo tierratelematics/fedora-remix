@@ -1,4 +1,4 @@
-## [32.0] -
+## [32.0] - 2020-11-11
 
 ### Added
  - ghex hexadecimal editor (GNOME development)
