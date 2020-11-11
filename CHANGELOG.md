@@ -8,6 +8,9 @@
 ### Changed
 - Fedora 33
 
+### Removed
+- KDE flavor
+
 ## [32.0] - 2020-06-09
 
 ### Added
