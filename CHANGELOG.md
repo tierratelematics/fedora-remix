@@ -1,9 +1,23 @@
-## [32.0] -
+## [32.0] - 2020-11-11
+
+### Added
+ - ghex hexadecimal editor (GNOME development)
+ - Emoji font support
+ - Cisco open h264 codec for Firefox
+
+### Changed
+- Fedora 33
+
+### Removed
+- KDE flavor
+
+## [32.0] - 2020-06-09
 
 ### Added
  - MS Visual Studio Code (development)
  - MS Teams (commented by default)
  - tmate
+ - MS Exchange support via evolution-ews (GNOME)
 
 ### Changed
 - Fedora 32

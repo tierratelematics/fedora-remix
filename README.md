@@ -15,8 +15,7 @@ We have taken care of:
 * little desktop tweaks
 * Active Directory integration
 
-We have GNOME and KDE flavors and it's quite easy to toggle features or add
-extra customizations.
+It's quite easy to toggle features by including or excluding "mixin" files.
 
 You can build a LiveCD and try the software, and then install it in your PC
 if you want.
@@ -124,8 +123,7 @@ To run these, you will also need:
 # dnf install lorax-lmc-novirt vim-minimal pykickstart livecd-tools
 ```
 
-In a nutshell, you have to choose a version (eg: KDE or GNOME) and then
-create a single Kickstart file from the base code:
+In a nutshell, you have to create a single Kickstart file from the base code:
 
 ```
  # ksflatten --config kickstarts/remix-gnome.ks --output fedora-kickstarts.ks
