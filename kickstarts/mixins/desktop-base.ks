@@ -16,6 +16,7 @@ alsa-plugins-pulseaudio
 alsa-utils
 mesa-dri-drivers
 mesa-vulkan-drivers
+mozilla-openh264
 pipewire-utils
 pulseaudio
 pulseaudio-module-*
