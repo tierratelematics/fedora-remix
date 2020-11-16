@@ -25,17 +25,6 @@ shutdown
 %include fedora-repo.ks
 
 %packages
-@base-x
-@guest-desktop-agents
-@standard
-@core
-@fonts
-@input-methods
-@dial-up
-@multimedia
-@hardware-support
-@printing
-
 # Explicitly specified here:
 # <notting> walters: because otherwise dependency loops cause yum issues.
 kernel
