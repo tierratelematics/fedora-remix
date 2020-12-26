@@ -212,44 +212,4 @@ DOMAINCTL_EOF
 
 chmod ug+x /usr/sbin/domainctl
 
-cat > /usr/sbin/backup_for_upgrade.sh << 'BACKUPSCRIPT_EOF'
-#!/bin/bash
-
-if [ "$(id -u)" != "0" ]; then
-    echo "This script must be run as root" 1>&2
-    exit 1
-fi
-
-USER="$(logname)"
-MOUNTPOINT_DEST="/home"
-DEST="/home/backup-$USER@$HOSTNAME-$(date '+%Y%m%d_%H%M%S')"
-PATHS_TO_BACKUP=(
-    usr/local
-    etc
-    root
-)
-
-mkdir -p "$DEST"
-cd $DEST
-umask 0066
-
-echo "Saving lists of installed packages"
-id > id.txt
-dnf list installed > dnf_list_installed.txt
-rpm -qa > rpm-qa.txt
-flatpak list > flatpak_list.txt
-snap list > snap_list.txt
-
-# backup folders
-for path in "${PATHS_TO_BACKUP[@]}"
-do
-    echo "Backing up $path"
-    tar cjpf "backup-$(echo $path | tr / _).tar.bz2" -C / "$path"
-done
-
-echo "All done. Files are in $DEST"
-
-BACKUPSCRIPT_EOF
-
-chmod +x /usr/sbin/backup_for_upgrade.sh
 %end
