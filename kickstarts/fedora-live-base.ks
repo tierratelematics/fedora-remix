@@ -334,7 +334,7 @@ touch /etc/machine-id
 
 
 %post --nochroot
-cp $INSTALL_ROOT/usr/share/licenses/*-release/* $LIVE_ROOT/
+cp $INSTALL_ROOT/usr/share/licenses/*-release-common/* $LIVE_ROOT/
 
 # only works on x86, x86_64
 if [ "$(uname -i)" = "i386" -o "$(uname -i)" = "x86_64" ]; then
