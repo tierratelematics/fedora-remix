@@ -334,23 +334,15 @@ touch /etc/machine-id
 
 
 %post --nochroot
-cp $INSTALL_ROOT/usr/share/licenses/*-release-common/* $LIVE_ROOT/
+# For livecd-creator builds only (lorax/livemedia-creator handles this directly)
+if [ -n "$LIVE_ROOT" ]; then
+    cp "$INSTALL_ROOT"/usr/share/licenses/*-release-common/* "$LIVE_ROOT/"
 
-# only works on x86, x86_64
-if [ "$(uname -i)" = "i386" -o "$(uname -i)" = "x86_64" ]; then
-    # For livecd-creator builds
-    if [ ! -d $LIVE_ROOT/LiveOS ]; then mkdir -p $LIVE_ROOT/LiveOS ; fi
-    cp /usr/bin/livecd-iso-to-disk $LIVE_ROOT/LiveOS
-
-    # For lorax/livemedia-creator builds
-    sed -i '
-    /## make boot.iso/ i\
-    # Add livecd-iso-to-disk script to .iso filesystem at /LiveOS/\
-    <% f = "usr/bin/livecd-iso-to-disk" %>\
-    %if exists(f):\
-        install ${f} ${LIVEDIR}/${f|basename}\
-    %endif\
-    ' /usr/share/lorax/templates.d/99-generic/live/x86.tmpl
+    # only installed on x86, x86_64
+    if [ -f /usr/bin/livecd-iso-to-disk ]; then
+        mkdir -p "$LIVE_ROOT/LiveOS"
+        cp /usr/bin/livecd-iso-to-disk "$LIVE_ROOT/LiveOS"
+    fi
 fi
 
 %end
