@@ -194,9 +194,6 @@ systemctl --no-reload disable mdmonitor-takeover.service 2> /dev/null || :
 systemctl stop mdmonitor.service 2> /dev/null || :
 systemctl stop mdmonitor-takeover.service 2> /dev/null || :
 
-# don't enable the gnome-settings-daemon packagekit plugin
-gsettings set org.gnome.software download-updates 'false' || :
-
 # don't start cron/at as they tend to spawn things which are
 # disk intensive that are painful on a live image
 systemctl --no-reload disable crond.service 2> /dev/null || :
