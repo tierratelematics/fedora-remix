@@ -50,7 +50,7 @@ else
 
 %:
 	docker run --privileged --cap-add=ALL -v /dev:/dev -v /lib/modules:/lib/modules \
-		-v "$(CURDIR):/spin/" -it --rm $(BUILDER_IMG) \
+		-v "$(CURDIR):/spin/" -it --rm --name fedora-remix-builder $(BUILDER_IMG) \
 		DEVICE=$(DEVICE) USE_DOCKER=no $@
 
 .PHONY: %
