@@ -75,12 +75,6 @@ Build the ISO files:
 $ make
 ```
 
-Or:
-
-```
-$ make FLAVOR=remix-kde
-```
-
 Test the live system in a virtual machine:
 
 ```
