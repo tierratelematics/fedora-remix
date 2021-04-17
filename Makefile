@@ -1,5 +1,5 @@
 FLAVOR=remix-gnome
-RELEASEVER=33
+RELEASEVER=34
 DEVICE=/dev/null # Override from command line for safety
 USE_DOCKER=yes
 

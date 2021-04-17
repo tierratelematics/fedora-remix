@@ -1,4 +1,9 @@
-## [32.0] - 2020-11-11
+## [34.0] - 2021-04-17
+
+### Changed
+- Fedora 34
+
+## [33.0] - 2020-11-11
 
 ### Added
  - ghex hexadecimal editor (GNOME development)
