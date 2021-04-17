@@ -5,8 +5,6 @@
 %packages
 
 # Networking
-NetworkManager-openconnect-gnome
-NetworkManager-openvpn-gnome
 evolution-ews
 
 %end

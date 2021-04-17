@@ -13,11 +13,7 @@
 
 # Multimedia
 alsa-plugins-pulseaudio
-alsa-utils
-mesa-dri-drivers
-mesa-vulkan-drivers
 mozilla-openh264
-pipewire-utils
 pulseaudio
 pulseaudio-module-*
 -pulseaudio-module-bluetooth # prefer RPMFusion version to pulseaudio-module-bluetooth
@@ -27,19 +23,12 @@ pulseaudio-utils
 google-noto-sans-fonts
 google-noto-sans-mono-fonts
 google-noto-serif-fonts
-google-noto-emoji-color-fonts
-liberation-mono-fonts
 liberation-s*-fonts
 wine-fonts
 
 # Tools
 @networkmanager-submodules
-dnf-plugins-core
-drpm
-flatpak
 htop
-plymouth-system-theme
-rsync
 vim-enhanced
 unar
 tmate
