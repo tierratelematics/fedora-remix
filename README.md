@@ -35,18 +35,16 @@ You can get the official Fedora kickstarts from:
 ## How to build the LiveCD
 
 A Fedora system matching the target release version is required to build the
-images. This is tipically virtualized with docker, so that another Linux host
-can be used.
+images. The build system support using a podman container, so that another
+Linux host can be used.
 
-Required dependencies are: docker qemu-kvm make. Your user must be able to run
-docker and qemu-kvm.
+Required dependencies are: `podman`, `qemu-kvm`, `make`. You will need root
+privileges for most things.
 
 This usually means:
 
 ```
-# dnf install docker qemu-kvm make
-# gpasswd -a $USER -g docker
-# gpasswd -a $USER -g kvm
+# dnf install podman qemu-kvm make
 ```
 
 To build, selinux must be set off:
@@ -57,47 +55,47 @@ To build, selinux must be set off:
 
 GNU `make` is used to control the build process. For example:
 
-Prepare the docker image used to build:
+Prepare the podman image used to build:
 
 ```
-$ make docker-builder
+# make podman-builder
 ```
 
 Start clean:
 
 ```
-$ make clean
+# make clean
 ```
 
 Build the ISO files:
 
 ```
-$ make
+# make
 ```
 
 Test the live system in a virtual machine:
 
 ```
-$ make test
+# make test
 ```
 
 Write the result to a USB drive:
 
 ```
-$ make DEVICE=/dev/sdX disk-efi # or "disk-bios" for legacy BIOS mode
+# make DEVICE=/dev/sdX disk-efi # or "disk-bios" for legacy BIOS mode
 ```
 
 Clean up the build machine completely:
 
 ```
-$ make clean docker-clean
+# make clean podman-clean
 ```
 
-By default docker is used to run the build steps but the make target can also
-be run directly, but root is probably required:
+By default podman is used to run the build steps but the make target can also
+be run directly:
 
 ```
-# make USE_DOCKER=no images
+# make USE_PODMAN=no images
 ```
 
 ### Customizing the build
@@ -120,13 +118,13 @@ To run these, you will also need:
 In a nutshell, you have to create a single Kickstart file from the base code:
 
 ```
- # ksflatten --config kickstarts/remix-gnome.ks --output fedora-kickstarts.ks
+# ksflatten --config kickstarts/remix-gnome.ks --output fedora-kickstarts.ks
 ```
 
 Then you can build the ISO image using the kickstart just obtained:
 
 ```
- # livemedia-creator --resultdir=results/remix-gnome --make-iso --no-virt \
+# livemedia-creator --resultdir=results/remix-gnome --make-iso --no-virt \
    --project=Fedora --releasever=31 --ks=fedora-kickstarts.ks
 ```
 
@@ -151,7 +149,7 @@ In order to get an EFI bootable media:
 You can join a newly installed host to the domain using the following command:
 
 ```
- # domainctl join
+# domainctl join
 ```
 
 You will be prompted for credential of an administrator.
@@ -161,7 +159,7 @@ You will be prompted for credential of an administrator.
 You can assign the worksation to an user using the following command:
 
 ```
- # domainctl assign
+# domainctl assign
 ```
 
 You will be prompted for a domain username.

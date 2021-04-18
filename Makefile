@@ -1,23 +1,23 @@
 FLAVOR=remix-gnome
 RELEASEVER=34
 DEVICE=/dev/null # Override from command line for safety
-USE_DOCKER=yes
+USE_PODMAN=yes
 
 ODIR=results
 BUILDER_IMG=fedora-spin-builder
 
 default: images
 
-docker-builder:
-	docker build . -t $(BUILDER_IMG)
+podman-builder:
+	podman build . -t $(BUILDER_IMG)
 
-docker-clean:
-	docker images -f "reference=$(BUILDER_IMG)" -q | xargs docker rmi -f
+podman-clean:
+	podman images -f "reference=$(BUILDER_IMG)" -q | xargs podman rmi -f
 
 test: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
 	qemu-kvm -m 2560 -cdrom $(ODIR)/$(FLAVOR)/images/boot-efi.iso
 
-ifneq ($(USE_DOCKER), yes)
+ifneq ($(USE_PODMAN), yes)
 
 images: $(ODIR)/$(FLAVOR)/images/boot-efi.iso $(ODIR)/$(FLAVOR)/images/boot.iso
 
@@ -42,16 +42,16 @@ disk-efi: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
 disk-bios: $(ODIR)/$(FLAVOR)/images/boot.iso
 	livecd-iso-to-disk --format --reset-mbr --msdos $(ODIR)/$(FLAVOR)/images/boot.iso $(DEVICE)
 
-.PHONY: default clean test docker-builder docker-clean images disk-efi disk-bios
+.PHONY: default clean test podman-builder podman-clean images disk-efi disk-bios
 
 else
 
-# If we are running with docker execute any target with the docker builder
+# If we are running with podman execute any target with the podman builder
 
 %:
-	docker run --privileged --cap-add=ALL -v /dev:/dev -v /lib/modules:/lib/modules \
+	podman run --privileged -v /dev:/dev -v /lib/modules:/lib/modules \
 		-v "$(CURDIR):/spin/" -it --rm --name fedora-remix-builder $(BUILDER_IMG) \
-		DEVICE=$(DEVICE) USE_DOCKER=no $@
+		DEVICE=$(DEVICE) USE_PODMAN=no $@
 
 .PHONY: %
 
