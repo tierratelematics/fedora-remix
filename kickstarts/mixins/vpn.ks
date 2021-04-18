@@ -14,6 +14,143 @@ echo ""
 echo "POST vpn ************************************"
 echo ""
 
+mkdir /etc/openvpn/TierraITG
+
+cat > /etc/openvpn/TierraITG/tierravpn.tlsauth << EOF
+-----BEGIN OpenVPN Static key V1-----
+4e38429c70a815dc476da670529da473
+d2b750256e048f7a61b038d390fadbdb
+ea1920c0532ed6f518fce4d8b3e42382
+6449be435e52c84481c81a35371d2f33
+3d213f46a7e73a310857defb7701bb04
+dbbd32b4d22a2cb5b1dcdd4c9e2017c5
+486c87b1d5e79ac279ecc3bc796c32dc
+45fffdfafe627d931fa723da2dc95cbc
+a9945bc5558530558b805d5a254300ee
+689414b913ab7ad7f95462caae4592b5
+9b11e3af75eb353bb9bad6d974a85575
+a03a61029b3ddfee55b5ce6d1b532699
+806f39f6588bda89fbbbc2f42b613996
+adbc063a0fd91c82f478604287cdc5e2
+49fde85bf2c9627f436a344f2c707248
+f1ccaa364d9dd312065015e91ddcee0c
+-----END OpenVPN Static key V1-----
+EOF
+
+cat > /etc/openvpn/TierraITG/ca.crt << EOF
+-----BEGIN CERTIFICATE-----
+MIIHADCCBOigAwIBAgIJAIMWmRYPEJ+ZMA0GCSqGSIb3DQEBCwUAMIGwMQswCQYD
+VQQGEwJJVDELMAkGA1UECBMCVE8xDjAMBgNVBAcTBVR1cmluMQ8wDQYDVQQKEwZU
+aWVycmExEjAQBgNVBAsTCUNvbW11bml0eTEiMCAGA1UEAxMZb3BlbnZwbi50aWVy
+cmFzZXJ2aWNlLmNvbTEQMA4GA1UEKRMHT3BlblZQTjEpMCcGCSqGSIb3DQEJARYa
+c3lzYWRtaW5AdGllcnJhc2VydmljZS5jb20wHhcNMjAwMzE3MDkyOTU0WhcNMzAw
+MzE1MDkyOTU0WjCBsDELMAkGA1UEBhMCSVQxCzAJBgNVBAgTAlRPMQ4wDAYDVQQH
+EwVUdXJpbjEPMA0GA1UEChMGVGllcnJhMRIwEAYDVQQLEwlDb21tdW5pdHkxIjAg
+BgNVBAMTGW9wZW52cG4udGllcnJhc2VydmljZS5jb20xEDAOBgNVBCkTB09wZW5W
+UE4xKTAnBgkqhkiG9w0BCQEWGnN5c2FkbWluQHRpZXJyYXNlcnZpY2UuY29tMIIC
+IjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAztu+55F9icc8wh9kwUPqD2M3
+A+zcwmxL5cp6emFk1kBUTY51/9AJ4F0WGvcewIIKuMME5Sg7aRxunRdRHzDJy80K
+W97xWbhzuxW8GQJRvUBqMe8CEMrOzs/e/g07SkzDhKREZ5spb12VZPurpw6GeHdS
+BvTTPsUs+7kW40zQAmHl6CgHVZzudJ19AfrOySdwVGunYZz5MCHaVwpNUKSDTHRH
+pzCDJ9S6Z/AF6kIM6jGIqj5yKiw07GBryYOtG3MHJGZL4kBz7kyqEpSUfu5CXvFW
+fvDYJeG56s7/WlsF+ty7w699wsuZ+rltTqzZ7xRyKDuTbrMmG1s4ZPzyqYYWIZao
+71ES3jZy3ULfazvTnm2aYiFkE5wmoXATb8XAgpMxC6qbZTuFv+L/LuiocWAX9FR/
+jSmzLyg/OJ060cH1oC64m5lVkN0WV6QzUDRyxP5CqXboRv0sw3jL3h+jLa9peKc4
+c3l0ViEyjFtRmN/9M9Ld3fE8G4Ue9eVa77H5IhceDEjHW8Ep8zALWFZ7+DbMD1KI
+63UttLEgz/K9b5gBnEGIcsEpIMARDLFSNc4hAzyrCOH7GtH5yhtrMts0Hi5P7IkU
+JFpQOOLbpT7sn9E5AmGkW5RoS7RyYga3nIu/ZZKhs0NyrAmjrg8ousEcVmHuVYCE
+NwlEklXVS++vl3w4YeMCAwEAAaOCARkwggEVMB0GA1UdDgQWBBTArRaULct9nUhC
+bZWppD7VTNQMtzCB5QYDVR0jBIHdMIHagBTArRaULct9nUhCbZWppD7VTNQMt6GB
+tqSBszCBsDELMAkGA1UEBhMCSVQxCzAJBgNVBAgTAlRPMQ4wDAYDVQQHEwVUdXJp
+bjEPMA0GA1UEChMGVGllcnJhMRIwEAYDVQQLEwlDb21tdW5pdHkxIjAgBgNVBAMT
+GW9wZW52cG4udGllcnJhc2VydmljZS5jb20xEDAOBgNVBCkTB09wZW5WUE4xKTAn
+BgkqhkiG9w0BCQEWGnN5c2FkbWluQHRpZXJyYXNlcnZpY2UuY29tggkAgxaZFg8Q
+n5kwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAgEAxi4aPSUHcloruIAU
+WnMzu5NX6RzGJaXIVhJatYgdh39NcF33OAu0h1PHsBG/jhKBCaHYhoOpnGnA9gbL
+9Bv9AR1RDPXSVLpMRVQEdbqOrZDXUwvVCA+46cYkEF9FIe/a4a/pyQMh8u5AodnH
+EwFMkYoZ5E8e8VsR+jK4oAwuDA3S44cjg511lbOlKYkRcx68Hec9IWQxAxC2E8HS
+BJfL+i0jFhpe8zjX1saohD6VP0F0WHTAj+JmIV5UjOrxZU9v7Tj8Ws7RKsreiAvj
+k/pUEO2GKU4pKtjsnRefmMAnGJK7gI9+ZPu6+tIo7jYLDAnAUI4XuAx9bnXbbaa9
+PCVgd4vo3UkfVuKkwqwOhdMGl4F/mzA5Y7MNNDuJ/znYFGxKiJ6Psn3C1KswfMTS
+xb42A6AhBeShUdQoJc2LGdMwk1ggmbJAG4tAKoEDxZn1pbz41jacfZYDp/L130D7
+6hbtBoRvo4Z2FRgPWTmieG7d1bEeb48L5vq9/jsMnPpScTn/sX35Na3ha8glg/la
+Hcuju1/MVGVpgUmp90YacX0YRBj4YR2kmF1RRbhffSgu/vygTClu9RC4TCUm4NvC
+0i3zmtDv8u2nChQoU474gdY8Xxj26Hsa9ydKg18x+zMQEiLswuwwD++eIry87pUi
+iLdgal2VBMfYq3iw76yHH7RscN4=
+-----END CERTIFICATE-----
+EOF
+
+cat > /etc/openvpn/TierraITG/TierraITG.ovpn << EOF
+##############################################
+###
+### Configuration file created by Securepoint SSL VPN Thu Nov 28 2019 - 11:23:52
+### Project website: http://sourceforge.net/projects/securepoint/
+### Securepoint GmbH, Bleckeder Landstrasse 28, 21337 Lueneburg, Germany; www.securepoint.de
+###
+### For further information about the configuration file,
+### please visit: http://www.openvpn.net/index.php/open-source/documentation
+###
+##############################################
+
+client
+float
+nobind
+persist-key
+persist-tun
+auth-user-pass
+cipher AES-256-CBC
+auth SHA1
+dev tun
+remote openvpn-itg.tierraservice.com 1194
+proto udp
+ca "ca.crt"
+remote-cert-tls server
+mssfix
+route-method exe
+verb 3
+route-delay 2
+mute 20
+tls-crypt tierravpn.tlsauth
+EOF
+
+cat > /etc/NetworkManager/system-connections/TierraITG.nmconnection << EOF
+[connection]
+id=TierraITG
+uuid=7fada527-55f0-4132-b2a1-469e4fd51888
+type=vpn
+permissions=
+
+[vpn]
+auth=SHA1
+ca=/etc/openvpn/TierraITG/ca.crt
+cipher=AES-256-CBC
+connection-type=password
+dev=tun
+float=yes
+mssfix=yes
+password-flags=1
+remote=openvpn-itg.tierraservice.com:1194
+remote-cert-tls=server
+tls-crypt=/etc/openvpn/TierraITG/tierravpn.tlsauth
+service-type=org.freedesktop.NetworkManager.openvpn
+
+[ipv4]
+dns-search=
+method=auto
+never-default=true
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method=auto
+
+[proxy]
+EOF
+
+chmod 600 /etc/NetworkManager/system-connections/TierraITG.nmconnection
+
+###
+
 mkdir /etc/openvpn/TierraFerrucci
 
 cat > /etc/openvpn/TierraFerrucci/tierrahqvpn.tlsauth << EOF
