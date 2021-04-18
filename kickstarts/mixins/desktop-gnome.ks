@@ -8,6 +8,7 @@
 
 # desktop
 gnome-shell-extension-dash-to-dock
+gnome-extensions-app
 gnome-tweaks
 appeditor
 
