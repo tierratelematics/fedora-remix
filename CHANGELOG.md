@@ -5,7 +5,8 @@
 
 ### Added
  - Wireshark (GNOME development)
- - Compiler and essential tools
+ - Compiler and essential tools (development)
+ - LibreOffice Draw (GNOME desktop)
 
 ## [33.0] - 2020-11-11
 

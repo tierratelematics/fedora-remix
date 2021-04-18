@@ -24,11 +24,13 @@ vlc
 brasero
 brasero-nautilus
 
-seahorse
-seahorse-nautilus
+# productivity
+libreoffice-draw
 
 # tools
 gparted
+seahorse
+seahorse-nautilus
 
 %end
 
