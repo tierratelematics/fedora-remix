@@ -13,6 +13,9 @@
 
 # Multimedia
 mozilla-openh264
+vdpauinfo
+libva-vdpau-driver
+libva-utils
 
 # Fonts
 google-noto-sans-fonts
