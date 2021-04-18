@@ -10,6 +10,7 @@
 gnome-shell-extension-dash-to-dock
 gnome-extensions-app
 gnome-tweaks
+gnome-shell-extension-gpaste
 appeditor
 
 # networking
@@ -66,7 +67,7 @@ cat > /etc/dconf/db/local.d/01-remix-gnome-extensions << EOF_EXTENSIONS
 # Remix global gnome extensions
 
 [org/gnome/shell]
-enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
+enabled-extensions=['GPaste@gnome-shell-extensions.gnome.org', 'dash-to-dock@micxgx.gmail.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
 
 EOF_EXTENSIONS
 
