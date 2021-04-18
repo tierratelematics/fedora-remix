@@ -14,6 +14,9 @@ podman-builder:
 podman-clean:
 	podman images -f "reference=$(BUILDER_IMG)" -q | xargs podman rmi -f
 
+podman-stop-builder:
+	podman stop fedora-remix-builder
+
 test: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
 	qemu-kvm -m 2560 -cdrom $(ODIR)/$(FLAVOR)/images/boot-efi.iso
 
@@ -42,7 +45,7 @@ disk-efi: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
 disk-bios: $(ODIR)/$(FLAVOR)/images/boot.iso
 	livecd-iso-to-disk --format --reset-mbr --msdos $(ODIR)/$(FLAVOR)/images/boot.iso $(DEVICE)
 
-.PHONY: default clean test podman-builder podman-clean images disk-efi disk-bios
+.PHONY: default clean test podman-builder podman-clean podman-stop-builder images disk-efi disk-bios
 
 else
 
