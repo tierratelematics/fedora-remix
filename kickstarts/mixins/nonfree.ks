@@ -12,7 +12,7 @@ repo --name=rpmfusion-free-tainted --metalink=https://mirrors.rpmfusion.org/meta
 repo --name=rpmfusion-nonfree-tainted --metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-tainted-$releasever&arch=$basearch
 repo --name=adobe --baseurl=http://linuxdownload.adobe.com/linux/$basearch/
 
-%packages --excludeWeakdeps
+%packages
 
 fedora-workstation-repositories
 

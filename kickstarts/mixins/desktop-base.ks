@@ -2,7 +2,7 @@
 #
 # Common customizations for a desktop workstation.
 
-%packages --excludeWeakdeps
+%packages
 
 # Unwanted stuff
 -abrt*

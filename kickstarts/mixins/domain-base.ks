@@ -2,7 +2,7 @@
 #
 # Provides MS Active Directory support.
 
-%packages --excludeWeakdeps
+%packages
 
 # AD integration
 @domain-client
