@@ -12,12 +12,7 @@
 -sendmail
 
 # Multimedia
-alsa-plugins-pulseaudio
 mozilla-openh264
-pulseaudio
-pulseaudio-module-*
--pulseaudio-module-bluetooth # prefer RPMFusion version to pulseaudio-module-bluetooth
-pulseaudio-utils
 
 # Fonts
 google-noto-sans-fonts
