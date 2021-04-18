@@ -3,6 +3,10 @@
 ### Changed
 - Fedora 34
 
+### Added
+ - Wireshark (GNOME development)
+ - Compiler and essential tools
+
 ## [33.0] - 2020-11-11
 
 ### Added

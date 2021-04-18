@@ -9,5 +9,7 @@
 gitg
 meld
 ghex
+vim-X11
+wireshark
 
 %end

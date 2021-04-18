@@ -7,7 +7,17 @@ repo --name=vscode --baseurl=https://packages.microsoft.com/yumrepos/vscode
 %packages
 
 @development-tools
+# editors
 code
+vim-enhanced
+
+# compiling
+automake
+kernel-devel
+pkgconfig
+
+# tools
+tesseract
 
 %end
 
