@@ -30,6 +30,7 @@ htop
 vim-enhanced
 unar
 tmate
+exfat-utils
 
 %end
 
