@@ -31,6 +31,7 @@ vim-enhanced
 unar
 tmate
 exfat-utils
+ntpsec
 
 %end
 
