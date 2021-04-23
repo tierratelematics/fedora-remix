@@ -28,6 +28,7 @@ brasero-nautilus
 
 # productivity
 libreoffice-draw
+file-roller-nautilus
 
 # tools
 gparted
