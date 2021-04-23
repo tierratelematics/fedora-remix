@@ -18,6 +18,9 @@ pkgconfig
 
 # tools
 tesseract
+smem
+strace
+telnet
 
 %end
 
