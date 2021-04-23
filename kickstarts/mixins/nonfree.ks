@@ -50,20 +50,6 @@ echo ""
 echo "POST nonfree **************************************"
 echo ""
 
-# A reduced version of Remi repository
-cat > /etc/yum.repos.d/remix.repo << REMI_REPO_EOF
-[remix-remi]
-name=Remix Remi - Fedora \$releasever - \$basearch
-#baseurl=http://rpms.famillecollet.com/fedora/\$releasever/remi/\$basearch/
-mirrorlist=http://rpms.famillecollet.com/fedora/\$releasever/remi/mirror
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
-timeout=5
-exclude=gd
-includepkgs=libdvd*,remi-release*
-REMI_REPO_EOF
-
 # Adobe repo does not offer a release rpm
 cat > /etc/yum.repos.d/adobe-linux-x86_64.repo << ADOBE_REPO_EOF
 [adobe-linux-x86_64]
