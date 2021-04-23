@@ -47,10 +47,16 @@ This usually means:
 # dnf install podman qemu-kvm make
 ```
 
-To build, selinux must be set off:
+To build, selinux must be set off. This means either disabling at runtime:
 
 ```
 # setenforce 0
+```
+
+Or it might require to (since Fedora 34+) adding a kernel option:
+
+```
+enforcing=0
 ```
 
 GNU `make` is used to control the build process. For example:
