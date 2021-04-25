@@ -7,11 +7,12 @@
 %packages
 
 # desktop
-gnome-shell-extension-dash-to-dock
-gnome-extensions-app
-gnome-tweaks
-gnome-shell-extension-gpaste
 appeditor
+gnome-extensions-app
+gnome-shell-extension-appindicator
+gnome-shell-extension-dash-to-dock
+gnome-shell-extension-gpaste
+gnome-tweaks
 
 # networking
 firewall-config
@@ -68,7 +69,7 @@ cat > /etc/dconf/db/local.d/01-remix-gnome-extensions << EOF_EXTENSIONS
 # Remix global gnome extensions
 
 [org/gnome/shell]
-enabled-extensions=['GPaste@gnome-shell-extensions.gnome.org', 'dash-to-dock@micxgx.gmail.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
+enabled-extensions=['appindicatorsupport@rgcjonas.gmail.com', 'GPaste@gnome-shell-extensions.gnome.org', 'dash-to-dock@micxgx.gmail.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
 
 EOF_EXTENSIONS
 

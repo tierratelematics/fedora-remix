@@ -8,6 +8,7 @@
  - Compiler and essential tools (development)
  - LibreOffice Draw (GNOME desktop)
  - Gpaste clipboard history manager (GNOME desktop)
+ - Top panel "tray icons" support (GNOME desktop)
 
 ## [33.0] - 2020-11-11
 
