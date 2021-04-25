@@ -26,13 +26,13 @@ rpmfusion-nonfree-release-tainted
 rpmfusion-*-appstream-data
 
 # Multimedia
-gstreamer*-libav
-gstreamer*-vaapi
-gstreamer*-plugins-bad-free
-gstreamer*-plugins-bad-freeworld
-gstreamer*-plugins-good
-gstreamer*-plugins-ugly
-gstreamer*-plugins-ugly-free
+gstreamer1-libav
+gstreamer1-vaapi
+gstreamer1-plugins-bad-free
+gstreamer1-plugins-bad-freeworld
+gstreamer1-plugins-good
+gstreamer1-plugins-ugly
+gstreamer1-plugins-ugly-free
 libdvdcss
 flash-plugin
 

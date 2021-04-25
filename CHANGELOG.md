@@ -10,6 +10,9 @@
  - Gpaste clipboard history manager (GNOME desktop)
  - Top panel "tray icons" support (GNOME desktop)
 
+### Removed
+- gstreamer 0.x libs
+
 ## [33.0] - 2020-11-11
 
 ### Added
