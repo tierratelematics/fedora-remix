@@ -2,7 +2,7 @@
 #
 # Common customizations for a desktop workstation.
 
-%packages --excludeWeakdeps
+%packages
 
 # Unwanted stuff
 -abrt*
@@ -12,36 +12,26 @@
 -sendmail
 
 # Multimedia
-alsa-plugins-pulseaudio
-alsa-utils
-mesa-dri-drivers
-mesa-vulkan-drivers
-pipewire-utils
-pulseaudio
-pulseaudio-module-*
--pulseaudio-module-bluetooth # prefer RPMFusion version to pulseaudio-module-bluetooth
-pulseaudio-utils
+mozilla-openh264
+vdpauinfo
+libva-vdpau-driver
+libva-utils
 
 # Fonts
 google-noto-sans-fonts
 google-noto-sans-mono-fonts
 google-noto-serif-fonts
-google-noto-emoji-color-fonts
-liberation-mono-fonts
 liberation-s*-fonts
 wine-fonts
 
 # Tools
 @networkmanager-submodules
-dnf-plugins-core
-drpm
-flatpak
 htop
-plymouth-system-theme
-rsync
 vim-enhanced
 unar
 tmate
+exfat-utils
+ntpsec
 
 %end
 
@@ -130,5 +120,90 @@ if [ -n "\$PS1" ]; then
 	fi
 fi
 EOF_PROMPT
+
+cat > /usr/sbin/backup_for_upgrade.sh << 'BACKUPSCRIPT_EOF'
+#!/bin/bash
+
+if [ "$(id -u)" != "0" ]; then
+    echo "This script must be run as root" 1>&2
+    exit 1
+fi
+
+USER="$(logname)"
+MOUNTPOINT_DEST="/home"
+DEST="/home/backup-$USER@$HOSTNAME-$(date '+%Y%m%d_%H%M%S')"
+PATHS_TO_BACKUP=(
+    usr/local
+    etc
+    root
+)
+
+mkdir -p "$DEST"
+cd $DEST
+umask 0066
+
+echo "Saving lists of installed packages"
+id > id.txt
+dnf list installed > dnf_list_installed.txt
+rpm -qa > rpm-qa.txt
+flatpak list > flatpak_list.txt
+snap list > snap_list.txt
+
+# backup folders
+for path in "${PATHS_TO_BACKUP[@]}"
+do
+    echo "Backing up $path"
+    tar cjpf "backup-$(echo $path | tr / _).tar.bz2" -C / "$path"
+done
+
+echo "All done. Files are in $DEST"
+
+BACKUPSCRIPT_EOF
+
+chmod +x /usr/sbin/backup_for_upgrade.sh
+
+semanage fcontext -a -t unconfined_exec_t '/usr/local/sbin/firstboot'
+
+cat > /usr/local/sbin/firstboot << 'FIRSTBOOT_EOF'
+#!/bin/bash
+
+extcode=0
+
+shopt -s nullglob
+for src in /usr/local/sbin/firstboot_*.sh; do
+    echo "firstboot: running $src"
+    $src
+    if [ $? -ne 0 ]; then
+        mv $src $src.failed
+        echo "Script failed! Saved as: $src.failed"
+        extcode=1
+    else
+        echo "Script completed"
+        rm $src
+    fi
+done
+
+if [[ $exitcode == 0 ]]; then
+    semanage fcontext -a -t unconfined_exec_t '/usr/local/sbin/firstboot'
+    rm /usr/local/sbin/firstboot
+fi
+
+exit $extcode
+
+FIRSTBOOT_EOF
+
+chmod +x /usr/local/sbin/firstboot
+
+cat > /usr/local/sbin/firstboot_anaconda.sh << 'ANACONDA_EOF'
+#!/bin/bash
+dnf remove -y anaconda
+ANACONDA_EOF
+chmod +x /usr/local/sbin/firstboot_anaconda.sh
+
+cat > /usr/local/sbin/firstboot_noatime.sh << 'NOATIME_EOF'
+#!/bin/bash
+gawk -i inplace '/^[^#]/ {if (($3 == "ext4" || $3 == "btrfs") && !match($4, /noatime/)) { $4=$4",noatime" } } 1' /etc/fstab
+NOATIME_EOF
+chmod +x /usr/local/sbin/firstboot_noatime.sh
 
 %end

@@ -1,4 +1,20 @@
-## [32.0] - 2020-11-11
+## [34.0] - 2021-05-18
+
+### Changed
+- Fedora 34
+
+### Added
+ - Wireshark (GNOME development)
+ - Compiler and essential tools (development)
+ - LibreOffice Draw (GNOME desktop)
+ - Gpaste clipboard history manager (GNOME desktop)
+ - Top panel "tray icons" support (GNOME desktop)
+ - firstboot command to handle post install tasks: clean installer, enable flathub, set noatime in fstab
+
+### Removed
+- gstreamer 0.x libs
+
+## [33.0] - 2020-11-11
 
 ### Added
  - ghex hexadecimal editor (GNOME development)

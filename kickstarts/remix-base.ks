@@ -4,5 +4,3 @@
 
 %include mixins/nonfree.ks
 %include mixins/printing.ks
-%include mixins/teams.ks
-%include mixins/vpn.ks

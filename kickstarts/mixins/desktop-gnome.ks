@@ -7,9 +7,12 @@
 %packages
 
 # desktop
-gnome-shell-extension-dash-to-dock
-gnome-tweaks
 appeditor
+gnome-extensions-app
+gnome-shell-extension-appindicator
+gnome-shell-extension-dash-to-dock
+gnome-shell-extension-gpaste
+gnome-tweaks
 
 # networking
 firewall-config
@@ -24,11 +27,14 @@ vlc
 brasero
 brasero-nautilus
 
-seahorse
-seahorse-nautilus
+# productivity
+libreoffice-draw
+file-roller-nautilus
 
 # tools
 gparted
+seahorse
+seahorse-nautilus
 
 %end
 
@@ -63,11 +69,17 @@ cat > /etc/dconf/db/local.d/01-remix-gnome-extensions << EOF_EXTENSIONS
 # Remix global gnome extensions
 
 [org/gnome/shell]
-enabled-extensions=['dash-to-dock@micxgx.gmail.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
+enabled-extensions=['appindicatorsupport@rgcjonas.gmail.com', 'GPaste@gnome-shell-extensions.gnome.org', 'dash-to-dock@micxgx.gmail.com', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
 
 EOF_EXTENSIONS
 
 # Update configuration
 dbus-launch --exit-with-session dconf update
+
+cat > /usr/local/sbin/firstboot_gnome.sh << 'GNOME_EOF'
+#!/bin/bash
+dnf remove -y gnome-initial-setup gnome-tour
+GNOME_EOF
+chmod +x /usr/local/sbin/firstboot_gnome.sh
 
 %end

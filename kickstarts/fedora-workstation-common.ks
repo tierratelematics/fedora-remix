@@ -5,22 +5,8 @@
 -@input-methods
 -@standard
 
-# Make sure to sync any additions / removals done here with
-# workstation-product-environment in comps
-@base-x
-@container-management
-@core
-@firefox
-mozilla-openh264
-@fonts
-@gnome-desktop
-@guest-desktop-agents
-@hardware-support
-@libreoffice
-@multimedia
-@networkmanager-submodules
-@printing
-@workstation-product
+# Install workstation-product-environment to resolve RhBug:1891500
+@^workstation-product-environment
 
 # Exclude unwanted packages from @anaconda-tools group
 -gfs2-utils

@@ -2,10 +2,9 @@
 #
 # Provides support for printing. Adds extra repos for drivers.
 
-%packages --excludeWeakdeps
+%packages
 
 @printing
-cups-ipptool
 cups-lpd
 
 %end

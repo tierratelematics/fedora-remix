@@ -12,7 +12,7 @@ repo --name=rpmfusion-free-tainted --metalink=https://mirrors.rpmfusion.org/meta
 repo --name=rpmfusion-nonfree-tainted --metalink=https://mirrors.rpmfusion.org/metalink?repo=nonfree-fedora-tainted-$releasever&arch=$basearch
 repo --name=adobe --baseurl=http://linuxdownload.adobe.com/linux/$basearch/
 
-%packages --excludeWeakdeps
+%packages
 
 fedora-workstation-repositories
 
@@ -26,13 +26,13 @@ rpmfusion-nonfree-release-tainted
 rpmfusion-*-appstream-data
 
 # Multimedia
-gstreamer*-libav
-gstreamer*-vaapi
-gstreamer*-plugins-bad-free
-gstreamer*-plugins-bad-freeworld
-gstreamer*-plugins-good
-gstreamer*-plugins-ugly
-gstreamer*-plugins-ugly-free
+gstreamer1-libav
+gstreamer1-vaapi
+gstreamer1-plugins-bad-free
+gstreamer1-plugins-bad-freeworld
+gstreamer1-plugins-good
+gstreamer1-plugins-ugly
+gstreamer1-plugins-ugly-free
 libdvdcss
 flash-plugin
 
@@ -49,20 +49,6 @@ unrar
 echo ""
 echo "POST nonfree **************************************"
 echo ""
-
-# A reduced version of Remi repository
-cat > /etc/yum.repos.d/remix.repo << REMI_REPO_EOF
-[remix-remi]
-name=Remix Remi - Fedora \$releasever - \$basearch
-#baseurl=http://rpms.famillecollet.com/fedora/\$releasever/remi/\$basearch/
-mirrorlist=http://rpms.famillecollet.com/fedora/\$releasever/remi/mirror
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi
-timeout=5
-exclude=gd
-includepkgs=libdvd*,remi-release*
-REMI_REPO_EOF
 
 # Adobe repo does not offer a release rpm
 cat > /etc/yum.repos.d/adobe-linux-x86_64.repo << ADOBE_REPO_EOF
@@ -111,5 +97,12 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
 
 # Enable Cisco Open H.264 repository
 dnf config-manager --set-enabled fedora-cisco-openh264
+
+cat > /usr/local/sbin/firstboot_flathub.sh << 'FLATHUB_EOF'
+#!/bin/bash
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+FLATHUB_EOF
+
+chmod +x /usr/local/sbin/firstboot_flathub.sh
 
 %end
