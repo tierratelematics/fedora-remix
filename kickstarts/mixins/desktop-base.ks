@@ -162,4 +162,48 @@ BACKUPSCRIPT_EOF
 
 chmod +x /usr/sbin/backup_for_upgrade.sh
 
+semanage fcontext -a -t unconfined_exec_t '/usr/local/sbin/firstboot'
+
+cat > /usr/local/sbin/firstboot << 'FIRSTBOOT_EOF'
+#!/bin/bash
+
+extcode=0
+
+shopt -s nullglob
+for src in /usr/local/sbin/firstboot_*.sh; do
+    echo "firstboot: running $src"
+    $src
+    if [ $? -ne 0 ]; then
+        mv $src $src.failed
+        echo "Script failed! Saved as: $src.failed"
+        extcode=1
+    else
+        echo "Script completed"
+        rm $src
+    fi
+done
+
+if [[ $exitcode == 0 ]]; then
+    semanage fcontext -a -t unconfined_exec_t '/usr/local/sbin/firstboot'
+    rm /usr/local/sbin/firstboot
+fi
+
+exit $extcode
+
+FIRSTBOOT_EOF
+
+chmod +x /usr/local/sbin/firstboot
+
+cat > /usr/local/sbin/firstboot_anaconda.sh << 'ANACONDA_EOF'
+#!/bin/bash
+dnf remove -y anaconda
+ANACONDA_EOF
+chmod +x /usr/local/sbin/firstboot_anaconda.sh
+
+cat > /usr/local/sbin/firstboot_noatime.sh << 'NOATIME_EOF'
+#!/bin/bash
+gawk -i inplace '/^[^#]/ {if (($3 == "ext4" || $3 == "btrfs") && !match($4, /noatime/)) { $4=$4",noatime" } } 1' /etc/fstab
+NOATIME_EOF
+chmod +x /usr/local/sbin/firstboot_noatime.sh
+
 %end

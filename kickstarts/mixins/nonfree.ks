@@ -98,4 +98,11 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe-linux
 # Enable Cisco Open H.264 repository
 dnf config-manager --set-enabled fedora-cisco-openh264
 
+cat > /usr/local/sbin/firstboot_flathub.sh << 'FLATHUB_EOF'
+#!/bin/bash
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+FLATHUB_EOF
+
+chmod +x /usr/local/sbin/firstboot_flathub.sh
+
 %end

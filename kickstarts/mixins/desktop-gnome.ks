@@ -76,4 +76,10 @@ EOF_EXTENSIONS
 # Update configuration
 dbus-launch --exit-with-session dconf update
 
+cat > /usr/local/sbin/firstboot_gnome.sh << 'GNOME_EOF'
+#!/bin/bash
+dnf remove -y gnome-initial-setup gnome-tour
+GNOME_EOF
+chmod +x /usr/local/sbin/firstboot_gnome.sh
+
 %end

@@ -212,4 +212,11 @@ DOMAINCTL_EOF
 
 chmod ug+x /usr/sbin/domainctl
 
+cat > /usr/local/sbin/firstboot_ecryptfs.sh << 'ECRYPTFS_EOF'
+#!/bin/bash
+dnf install -y ecryptfs-utils
+gawk -i inplace '/^[^#]/ {if ($2 == "/home") {gsub(",compress=zstd:1","",$4); } } 1' /etc/fstab
+ECRYPTFS_EOF
+chmod +x /usr/local/sbin/firstboot_ecryptfs.sh
+
 %end

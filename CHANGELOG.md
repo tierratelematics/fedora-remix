@@ -1,4 +1,4 @@
-## [34.0] - 2021-04-17
+## [34.0] - 2021-05-18
 
 ### Changed
 - Fedora 34
@@ -9,6 +9,7 @@
  - LibreOffice Draw (GNOME desktop)
  - Gpaste clipboard history manager (GNOME desktop)
  - Top panel "tray icons" support (GNOME desktop)
+ - firstboot command to handle post install tasks: clean installer, enable flathub, set noatime in fstab
 
 ### Removed
 - gstreamer 0.x libs

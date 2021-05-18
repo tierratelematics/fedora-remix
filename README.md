@@ -111,6 +111,39 @@ localization can be changed. By default everything is included.
 
 We are happy to accept PRs for additional languages and extra features.
 
+## Post install tasks
+
+### firstboot script
+
+After completing an installation a `firstboot` command can be executed to apply
+a few customizations and cleanups that cannot be built into the installer.
+
+```
+# firstboot
+```
+
+This will enable `noatime` mounts, remove Anaconda and enable flathub.
+
+### Joining an Active Directory domain
+
+You can join a newly installed host to the domain using the following command:
+
+```
+# domainctl join
+```
+
+You will be prompted for credential of an administrator.
+
+### Assinging the workstation
+
+You can assign the worksation to an user using the following command:
+
+```
+# domainctl assign
+```
+
+You will be prompted for a domain username.
+
 ### Useful manual build commands
 
 [See a detailed description][03] of how to build the live media.
@@ -147,28 +180,6 @@ In order to get an EFI bootable media:
 # cat result/images/efiboot.img >> boot-efi.iso
 # livecd-iso-to-disk --format --reset-mbr --efi boot-efi.iso /dev/sdX
 ```
-
-## Post install tasks
-
-### Joining an Active Directory domain
-
-You can join a newly installed host to the domain using the following command:
-
-```
-# domainctl join
-```
-
-You will be prompted for credential of an administrator.
-
-### Assinging the workstation
-
-You can assign the worksation to an user using the following command:
-
-```
-# domainctl assign
-```
-
-You will be prompted for a domain username.
 
 ## Change Log
 
