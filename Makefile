@@ -1,5 +1,5 @@
 FLAVOR=remix-gnome
-RELEASEVER=34
+RELEASEVER=35
 DEVICE=/dev/null # Override from command line for safety
 USE_PODMAN=yes
 
@@ -9,7 +9,7 @@ BUILDER_IMG=fedora-spin-builder
 default: images
 
 podman-builder:
-	podman build . -t $(BUILDER_IMG)
+	podman build . --pull -t $(BUILDER_IMG)
 
 podman-clean:
 	podman images -f "reference=$(BUILDER_IMG)" -q | xargs podman rmi -f
