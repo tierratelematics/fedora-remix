@@ -1,3 +1,11 @@
+## [35.0] - 2022-01-22
+
+### Changed
+- Fedora 35
+
+### Removed
+- Adobe Flash
+
 ## [34.0] - 2021-05-18
 
 ### Changed
