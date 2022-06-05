@@ -206,4 +206,10 @@ gawk -i inplace '/^[^#]/ {if (($3 == "ext4" || $3 == "btrfs") && !match($4, /noa
 NOATIME_EOF
 chmod +x /usr/local/sbin/firstboot_noatime.sh
 
+cat > /usr/local/sbin/firstboot_timedate_rtc.sh << 'TIMEDATE_RTC_EOF'
+#!/bin/bash
+timedatectl set-local-rtc no
+TIMEDATE_RTC_EOF
+chmod +x /usr/local/sbin/firstboot_timedate_rtc.sh
+
 %end

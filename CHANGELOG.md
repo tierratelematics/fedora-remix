@@ -2,6 +2,7 @@
 
 ### Changed
 - Fedora 36
+- Force UTC hardware clock
 
 ## [35.0] - 2022-01-22
 
