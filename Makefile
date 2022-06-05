@@ -52,7 +52,7 @@ else
 # If we are running with podman execute any target with the podman builder
 
 %:
-	podman run --privileged -v /dev:/dev \
+	podman run --privileged --pid=host --net=host --ipc=host --uts=host -v /dev:/dev \
 		-v "$(CURDIR):/spin/" -it --rm --name fedora-remix-builder $(BUILDER_IMG) \
 		DEVICE=$(DEVICE) USE_PODMAN=no $@
 
